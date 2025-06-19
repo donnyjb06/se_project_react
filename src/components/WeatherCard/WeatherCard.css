@@ -1,0 +1,32 @@
+.weather-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 80px;
+  margin-block-start: 28px;
+  transition: 0.3 ease;
+}
+
+.weather-card__background {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.weather-card__temperature {
+  font-size: 36px;
+  line-height: 1.11;
+  position: absolute;
+  left: 16px;
+  color: white;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .weather-card {
+    margin-block-start: 16px;
+  }
+}
