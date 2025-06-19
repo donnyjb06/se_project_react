@@ -1,0 +1,128 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.nav__column {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+}
+
+.nav__list_profile {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav__link_profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav__profile-picture {
+  max-width: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.nav__hamburger {
+  --dash-height: 2px;
+  --hamburger-gap: 8px;
+  display: none;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--hamburger-gap);
+  padding: 16px 8px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+/* TODO: fix hamburger icon animation */
+
+.nav__hamburger-icon-line {
+  border-radius: 1px;
+  width: 28px;
+  height: var(--dash-height);
+  background-color: black;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    align-items: flex-start;
+  }
+
+  .nav__column {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 34px;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .nav__hamburger.open {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    height: 208px;
+    padding: 11px;
+  }
+
+  .nav__hamburger-icon-line.open:nth-of-type(1) {
+    transform: rotate(10deg);
+  }
+
+  .nav__hamburger-icon-line.open:nth-of-type(2) {
+    transform: rotate(-45deg);
+  }
+
+  .nav__list {
+    display: none;
+  }
+
+  .nav__list.open {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 6;
+    top: 66px;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .nav__list-item_profile {
+    order: -1;
+    text-wrap: nowrap;
+  }
+}
