@@ -13,7 +13,6 @@ function App() {
     const setWeatherData = () => {
       fetchWeatherData(LOCATION)
         .then((res) => {
-          console.log(res);
           const utcDate = new Date(res?.dt * 1000);
           const localTime = new Date(utcDate.getTime() + res?.timezone * 1000);
           const hour = localTime.getHours();
@@ -30,8 +29,6 @@ function App() {
 
     setWeatherData();
   }, []);
-
-  console.log(data);
 
   return (
     <>
