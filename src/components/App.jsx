@@ -34,7 +34,7 @@ function App() {
     <>
       <Header city={"Herriman"} />
       <Main>
-        <WeatherCard temperature={75} isDay={true} condition={"Clear"}/>
+        
       </Main>
     </>
   );

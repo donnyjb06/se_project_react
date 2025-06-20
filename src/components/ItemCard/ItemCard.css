@@ -1,0 +1,24 @@
+.item-card {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.item-card__name {
+  position: absolute;
+  background-color: white;
+  padding: 2px 12px;
+  border-radius: 8px;
+  line-height: 1.25;
+  color: rgba(0, 0, 0, 0.6);
+  left: 50%;
+  translate: -50% 0;
+  top: 15px;
+}
+
+.item-card__image {
+  object-fit: contain;
+  max-width: 100%;
+}
