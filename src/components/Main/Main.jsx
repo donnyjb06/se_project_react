@@ -18,7 +18,7 @@ const Main = ({ temperature, isDay, condition }) => {
         Today is {75}&deg; / You may want to wear:
       </p>
       <ul className='main__clothing'>
-        {defaultClothingItems.map((item) => (
+        {filteredItems.map((item) => (
           <ItemCard key={item._id} name={item.name} link={item.link} />
         ))}
       </ul>
