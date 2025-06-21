@@ -6,16 +6,20 @@ import ItemCard from '../ItemCard/ItemCard';
 import { getTemperatureRange } from '../../utils/weatherApi';
 
 const Main = ({ temperature, isDay, condition }) => {
-  const tempRange = getTemperatureRange('hot');
+  const tempRange = getTemperatureRange(temperature);
   const filteredItems = defaultClothingItems.filter(
     (item) => item.weather === tempRange,
   );
 
   return (
     <main className='main'>
-      <WeatherCard temperature={75} isDay={true} condition={'Clear'} />
+      <WeatherCard
+        temperature={temperature}
+        isDay={isDay}
+        condition={condition}
+      />
       <p className='main__advisory'>
-        Today is {75}&deg; / You may want to wear:
+        Today is {temperature}&deg; / You may want to wear:
       </p>
       <ul className='main__clothing'>
         {filteredItems.map((item) => (
