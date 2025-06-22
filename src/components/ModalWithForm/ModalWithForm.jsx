@@ -7,7 +7,7 @@ const ModalWithForm = ({ title, btnLabel, formId, children, onClose }) => {
   useEffect(() => {
     const handleEscapeClose = (event) => {
       if (event.key === "Escape") {
-        onClose()
+        onClose(false)
       }
     }
 
@@ -21,11 +21,11 @@ const ModalWithForm = ({ title, btnLabel, formId, children, onClose }) => {
   return (
     <div className={`modal modal_type_${formId}`} role='dialog' aria-modal="true" onClick={(event) => {
       if (event.target.classList.contains('modal')) {
-        onClose();
+        onClose(false);
       }
     }}>
       <div className='modal__container'>
-        <button className='modal__exit' onClick={onClose}>
+        <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitIcon} alt="x icon for exit button" className='modal__exit-icon'/>
         </button>
         <h2 className='modal__title'>{title}</h2>

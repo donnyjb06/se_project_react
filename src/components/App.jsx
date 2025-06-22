@@ -34,10 +34,6 @@ function App() {
     setWeatherData();
   }, []);
 
-  const onClose = () => {
-    setModalIsOpen(false);
-  };
-
   return (
     <>
       <button onClick={() => setModalIsOpen(true)}>open modal</button>
@@ -52,7 +48,7 @@ function App() {
           title='New garment'
           btnLabel='Add garment'
           formId='add-garment-form'
-          onClose={onClose}>
+          onClose={setModalIsOpen}>
           <label className='form__label form__label_for_text'>
             Name
             <input
