@@ -10,7 +10,7 @@ function App() {
   const [data, setData] = useState();
   const [name, setName] = useState();
   const [link, setLink] = useState();
-  const [tempRange, setTempRange] = useState();
+  const [tempRange, setTempRange] = useState("hot");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-      <Header city={data?.city} />
+      <Header city={data?.city} openModal={setModalIsOpen}/>
       <Main
         temperature={data?.temperature}
         isDay={data?.isDay}
@@ -82,6 +82,7 @@ function App() {
                 name='weather'
                 onChange={(e) => setTempRange(e.target.value)}
                 id='weather-hot'
+                defaultChecked
                 required
               />
               <label

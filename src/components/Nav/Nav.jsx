@@ -8,7 +8,7 @@ const currentDate = new Date().toLocaleString('default', {
   day: 'numeric',
 });
 
-const Nav = ({ city }) => {
+const Nav = ({ city, openModal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -23,7 +23,7 @@ const Nav = ({ city }) => {
       </div>
       <div className='nav__column'>
         <ul className={`nav__list ${isOpen ? 'open' : ''}`}>
-          <li className='nav__list-item'>
+          <li className='nav__list-item' onClick={() => openModal(true)}>
             <a href='#' className='nav__link'>
               + Add clothes
             </a>
