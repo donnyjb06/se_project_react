@@ -36,7 +36,6 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setModalIsOpen(true)}>open modal</button>
       <Header city={data?.city} />
       <Main
         temperature={data?.temperature}
