@@ -51,22 +51,24 @@ function App() {
           <label className='form__label form__label_for_text'>
             Name
             <input
-              type='url'
+              type='text'
               className='form__input'
               name='name'
               placeholder='Name'
               onChange={(e) => setName(e.target.value)}
+              value={name || ""}
               required
             />
           </label>
           <label className='form__label form__label_for_text'>
             Image
             <input
-              type='text'
+              type='url'
               className='form__input'
               name='link'
               placeholder='Image URL'
               onChange={(e) => setLink(e.target.value)}
+              value={link || ""}
               required
             />
           </label>

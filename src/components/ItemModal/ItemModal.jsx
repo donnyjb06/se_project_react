@@ -16,7 +16,7 @@ const ItemModal = ({ link, name, condition, onClose }) => {
     return (() => {
       document.removeEventListener("keydown", handleEscapeClose)
     })
-  })
+  }, [])
 
   return (
     <div className='modal modal_type_item' onClick={(event) => {
