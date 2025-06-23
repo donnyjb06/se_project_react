@@ -1,0 +1,6 @@
+.footer {
+  line-height: 1.25;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}

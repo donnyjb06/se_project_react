@@ -5,6 +5,7 @@ import { LOCATION } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import Main from './Main/Main';
 import ModalWithForm from './ModalWithForm/ModalWithForm';
+import Footer from './Footer/Footer';
 
 function App() {
   const [data, setData] = useState();
@@ -42,6 +43,7 @@ function App() {
         isDay={data?.isDay}
         condition={data?.condition}
       />
+      <Footer />
       {modalIsOpen && (
         <ModalWithForm
           title='New garment'
