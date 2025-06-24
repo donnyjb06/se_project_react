@@ -6,13 +6,21 @@ import { useEffect, useState } from 'react';
 import Main from './Main/Main';
 import ModalWithForm from './ModalWithForm/ModalWithForm';
 import Footer from './Footer/Footer';
+import ItemModal from "./ItemModal/ItemModal"
+import { useModalClose } from "../hooks/useModalClose"
 
 function App() {
+  
   const [data, setData] = useState();
   const [name, setName] = useState();
   const [link, setLink] = useState();
   const [tempRange, setTempRange] = useState("hot");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [addModalIsOpen, setAddModalIsOpen] = useState(false);
+  const [itemModalIsOpen, setItemModalIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState()
+
+  useModalClose(addModalIsOpen, setAddModalIsOpen)
+  useModalClose(itemModalIsOpen, setItemModalIsOpen)
 
   useEffect(() => {
     const setWeatherData = () => {
@@ -35,21 +43,37 @@ function App() {
     setWeatherData();
   }, []);
 
+  const handleCardClick = (item) => {
+    setSelectedItem(item)
+    setItemModalIsOpen(true)
+  }
+
   return (
     <>
-      <Header city={data?.city} openModal={setModalIsOpen}/>
+      <Header city={data?.city} openModal={setAddModalIsOpen}/>
       <Main
         temperature={data?.temperature}
         isDay={data?.isDay}
         condition={data?.condition}
+        handleCardClick={handleCardClick}
       />
       <Footer />
-      {modalIsOpen && (
+
+      {itemModalIsOpen && (
+        <ItemModal
+          name={selectedItem.name}
+          link={selectedItem.link}
+          condition={selectedItem.condition}
+          onClose={setItemModalIsOpen}
+        />
+      )}
+
+      {addModalIsOpen && (
         <ModalWithForm
           title='New garment'
           btnLabel='Add garment'
           formId='add-garment-form'
-          onClose={setModalIsOpen}>
+          onClose={setAddModalIsOpen}>
           <label className='form__label form__label_for_text'>
             Name
             <input
@@ -86,7 +110,6 @@ function App() {
                 name='weather'
                 onChange={(e) => setTempRange(e.target.value)}
                 id='weather-hot'
-                defaultChecked
                 required
               />
               <label

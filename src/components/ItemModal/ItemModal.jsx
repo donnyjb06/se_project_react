@@ -4,26 +4,8 @@ import "./ItemModal.css"
 
 const ItemModal = ({ link, name, condition, onClose }) => {
 
-  useEffect(() => {
-    const handleEscapeClose = (event) => {
-      if (event.key === "Escape") {
-        onClose(false)
-      }
-    }
-
-    document.addEventListener("keydown", handleEscapeClose)
-
-    return (() => {
-      document.removeEventListener("keydown", handleEscapeClose)
-    })
-  }, [])
-
   return (
-    <div className='modal modal_type_item' onClick={(event) => {
-      if (event.target.classList.contains("modal")) {
-        onClose(false)
-      }
-    }}>
+    <div className='modal modal_type_item' >
       <div className='modal__container'>
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitModalIcon} alt='x icon for exit button' className='modal__exit-icon' />

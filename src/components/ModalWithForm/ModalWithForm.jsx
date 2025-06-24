@@ -9,27 +9,9 @@ const ModalWithForm = ({ title, btnLabel, formId, children, onClose }) => {
     const form = document.forms[formId]
     setIsValid(form.checkValidity())
   }
-  
-  useEffect(() => {
-    const handleEscapeClose = (event) => {
-      if (event.key === "Escape") {
-        onClose(false)
-      }
-    }
-
-    document.addEventListener("keydown", handleEscapeClose)
-
-    return (() => {
-      document.removeEventListener("keydown", handleEscapeClose)
-    })
-  }, [])
 
   return (
-    <div className={`modal modal_type_${formId}`} role='dialog' aria-modal="true" onClick={(event) => {
-      if (event.target.classList.contains('modal')) {
-        onClose(false);
-      }
-    }}>
+    <div className={`modal modal_type_${formId}`} role='dialog' aria-modal="true">
       <div className='modal__container'>
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitIcon} alt="x icon for exit button" className='modal__exit-icon'/>
