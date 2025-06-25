@@ -93,8 +93,8 @@
     top: 0;
     width: 100%;
     z-index: 5;
-    height: 208px;
-    padding: 11px;
+    min-height: 240px;
+    padding: 40px;
   }
 
   .nav__hamburger-icon-line.open:nth-of-type(1) {
@@ -107,6 +107,11 @@
 
   .nav__list {
     display: none;
+  }
+
+  .nav__toggle {
+    order: 1;
+
   }
 
   .nav__list.open {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Nav.css';
 import Logo from '../../assets/images/Logo.svg';
 import profilePicture from '../../assets/images/temp-profile-picture.png';
+import ToggleSwitch from "../ToggleSwitch/ToggleSwith"
 
 const currentDate = new Date().toLocaleString('default', {
   month: 'long',
@@ -23,6 +24,7 @@ const Nav = ({ city, openModal }) => {
       </div>
       <div className='nav__column'>
         <ul className={`nav__list ${isOpen ? 'open' : ''}`}>
+          <ToggleSwitch onToggle={() => console.log("switched")} optionLeft='F' optionRight='C' className='nav__toggle'/>
           <li className='nav__list-item' onClick={() => openModal(true)}>
             <a href='#' className='nav__link'>
               + Add clothes
