@@ -39,8 +39,7 @@
 }
 
 .custom-toggle__input:checked ~ .custom-toggle__knob {
-  right: -2px;
-  left: auto;
+  left: 50%;
 }
 
 .custom-toggle__option {
