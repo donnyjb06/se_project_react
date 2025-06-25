@@ -12,6 +12,11 @@
   isolation: isolate;
   z-index: 0;
   box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+.custom-toggle:hover {
+  border-color: black;
 }
 
 .custom-toggle__input {
@@ -35,7 +40,7 @@
   top: 50%;
   translate: 0 -50%;
   z-index: 0;
-  transition: 0.3s ease-out;
+  transition: 0.3s;
 }
 
 .custom-toggle__input:checked ~ .custom-toggle__knob {
