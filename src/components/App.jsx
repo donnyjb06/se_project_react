@@ -6,21 +6,21 @@ import { useEffect, useState } from 'react';
 import Main from './Main/Main';
 import ModalWithForm from './ModalWithForm/ModalWithForm';
 import Footer from './Footer/Footer';
-import ItemModal from "./ItemModal/ItemModal"
-import { useModalClose } from "../hooks/useModalClose"
+import ItemModal from './ItemModal/ItemModal';
+import { useModalClose } from '../hooks/useModalClose';
+import CurrentTemperatureUnitProvider from '../contexts/CurrentTemperatureUnit/CurrentTemperatureUnit.provider';
 
 function App() {
-  
   const [data, setData] = useState();
   const [name, setName] = useState();
   const [link, setLink] = useState();
-  const [tempRange, setTempRange] = useState("hot");
+  const [tempRange, setTempRange] = useState('hot');
   const [addModalIsOpen, setAddModalIsOpen] = useState(false);
   const [itemModalIsOpen, setItemModalIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState()
+  const [selectedItem, setSelectedItem] = useState();
 
-  useModalClose(addModalIsOpen, setAddModalIsOpen)
-  useModalClose(itemModalIsOpen, setItemModalIsOpen)
+  useModalClose(addModalIsOpen, setAddModalIsOpen);
+  useModalClose(itemModalIsOpen, setItemModalIsOpen);
 
   useEffect(() => {
     const setWeatherData = () => {
@@ -44,117 +44,119 @@ function App() {
   }, []);
 
   const handleCardClick = (item) => {
-    setSelectedItem(item)
-    setItemModalIsOpen(true)
-  }
+    setSelectedItem(item);
+    setItemModalIsOpen(true);
+  };
 
   return (
     <>
-      <Header city={data?.city} openModal={setAddModalIsOpen}/>
-      <Main
-        temperature={data?.temperature}
-        isDay={data?.isDay}
-        condition={data?.condition}
-        handleCardClick={handleCardClick}
-      />
-      <Footer />
-
-      {itemModalIsOpen && (
-        <ItemModal
-          name={selectedItem.name}
-          link={selectedItem.link}
-          condition={selectedItem.condition}
-          onClose={setItemModalIsOpen}
+      <CurrentTemperatureUnitProvider>
+        <Header city={data?.city} openModal={setAddModalIsOpen} />
+        <Main
+          temperature={data?.temperature}
+          isDay={data?.isDay}
+          condition={data?.condition}
+          handleCardClick={handleCardClick}
         />
-      )}
+        <Footer />
 
-      {addModalIsOpen && (
-        <ModalWithForm
-          title='New garment'
-          btnLabel='Add garment'
-          formId='add-garment-form'
-          onClose={setAddModalIsOpen}>
-          <label className='form__label form__label_for_text'>
-            Name
-            <input
-              type='text'
-              className='form__input'
-              name='name'
-              placeholder='Name'
-              onChange={(e) => setName(e.target.value)}
-              value={name || ""}
-              required
-            />
-          </label>
-          <label className='form__label form__label_for_text'>
-            Image
-            <input
-              type='url'
-              className='form__input'
-              name='link'
-              placeholder='Image URL'
-              onChange={(e) => setLink(e.target.value)}
-              value={link || ""}
-              required
-            />
-          </label>
-          <fieldset className='form__fieldset'>
-            <legend className='form__legend'>Select the weather type:</legend>
+        {itemModalIsOpen && (
+          <ItemModal
+            name={selectedItem.name}
+            link={selectedItem.link}
+            condition={selectedItem.condition}
+            onClose={setItemModalIsOpen}
+          />
+        )}
 
-            <div className='form__group'>
+        {addModalIsOpen && (
+          <ModalWithForm
+            title='New garment'
+            btnLabel='Add garment'
+            formId='add-garment-form'
+            onClose={setAddModalIsOpen}>
+            <label className='form__label form__label_for_text'>
+              Name
               <input
-                type='radio'
-                value='hot'
-                className='form__input form__input_type_radio'
-                checked={tempRange === 'hot'}
-                name='weather'
-                onChange={(e) => setTempRange(e.target.value)}
-                id='weather-hot'
+                type='text'
+                className='form__input'
+                name='name'
+                placeholder='Name'
+                onChange={(e) => setName(e.target.value)}
+                value={name || ''}
                 required
               />
-              <label
-                className='form__label form__label_for_weather'
-                htmlFor='weather-hot'>
-                Hot
-              </label>
-            </div>
-
-            <div className='form__group'>
+            </label>
+            <label className='form__label form__label_for_text'>
+              Image
               <input
-                type='radio'
-                value='warm'
-                className='form__input form__input_type_radio'
-                checked={tempRange === 'warm'}
-                name='weather'
-                onChange={(e) => setTempRange(e.target.value)}
-                id='weather-warm'
+                type='url'
+                className='form__input'
+                name='link'
+                placeholder='Image URL'
+                onChange={(e) => setLink(e.target.value)}
+                value={link || ''}
+                required
               />
-              <label
-                className='form__label form__label_for_weather'
-                htmlFor='weather-warm'>
-                Warm
-              </label>
-            </div>
+            </label>
+            <fieldset className='form__fieldset'>
+              <legend className='form__legend'>Select the weather type:</legend>
 
-            <div className='form__group'>
-              <input
-                type='radio'
-                value='cold'
-                className='form__input form__input_type_radio'
-                checked={tempRange === 'cold'}
-                name='weather'
-                onChange={(e) => setTempRange(e.target.value)}
-                id='weather-cold'
-              />
-              <label
-                className='form__label form__label_for_weather'
-                htmlFor='weather-cold'>
-                Cold
-              </label>
-            </div>
-          </fieldset>
-        </ModalWithForm>
-      )}
+              <div className='form__group'>
+                <input
+                  type='radio'
+                  value='hot'
+                  className='form__input form__input_type_radio'
+                  checked={tempRange === 'hot'}
+                  name='weather'
+                  onChange={(e) => setTempRange(e.target.value)}
+                  id='weather-hot'
+                  required
+                />
+                <label
+                  className='form__label form__label_for_weather'
+                  htmlFor='weather-hot'>
+                  Hot
+                </label>
+              </div>
+
+              <div className='form__group'>
+                <input
+                  type='radio'
+                  value='warm'
+                  className='form__input form__input_type_radio'
+                  checked={tempRange === 'warm'}
+                  name='weather'
+                  onChange={(e) => setTempRange(e.target.value)}
+                  id='weather-warm'
+                />
+                <label
+                  className='form__label form__label_for_weather'
+                  htmlFor='weather-warm'>
+                  Warm
+                </label>
+              </div>
+
+              <div className='form__group'>
+                <input
+                  type='radio'
+                  value='cold'
+                  className='form__input form__input_type_radio'
+                  checked={tempRange === 'cold'}
+                  name='weather'
+                  onChange={(e) => setTempRange(e.target.value)}
+                  id='weather-cold'
+                />
+                <label
+                  className='form__label form__label_for_weather'
+                  htmlFor='weather-cold'>
+                  Cold
+                </label>
+              </div>
+            </fieldset>
+          </ModalWithForm>
+        )}
+      </CurrentTemperatureUnitProvider>
     </>
   );
 }

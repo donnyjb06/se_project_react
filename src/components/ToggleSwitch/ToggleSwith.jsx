@@ -3,12 +3,11 @@ import './ToggleSwitch.css';
 
 const ToggleSwitch = ({ onToggle, optionLeft, optionRight, className = '' }) => {
   const handleToggle = (e) => {
-    onToggle(e.target.checked ? optionRight : optionLeft);
+    onToggle(e.target.checked);
   };
 
   return (
     <label className={`custom-toggle ${className}`}>
-      
       <input
         type='checkbox'
         className='custom-toggle__input'
