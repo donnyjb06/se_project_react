@@ -3,9 +3,14 @@ import './Main.css';
 import { defaultClothingItems } from '../../utils/constants';
 import ItemCard from '../ItemCard/ItemCard';
 import { getTemperatureRange } from '../../utils/weatherApi';
+import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 
-const Main = ({ temperature, isDay, condition, handleCardClick }) => {
-  const tempRange = getTemperatureRange(temperature);
+
+const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
+  const tempRange = getTemperatureRange(temperatures?.F);
+
+  const { currentTemperatureUnit } = useCurrentTemperatureUnit()
+
   const filteredItems = defaultClothingItems.filter(
     (item) => item.weather === tempRange,
   );
@@ -13,12 +18,12 @@ const Main = ({ temperature, isDay, condition, handleCardClick }) => {
   return (
     <main className='main'>
       <WeatherCard
-        temperature={temperature}
+        temperatures={temperatures}
         isDay={isDay}
         condition={condition}
       />
       <p className='main__advisory'>
-        Today is {temperature}&deg; / You may want to wear:
+        Today is {currentTemperatureUnit === "F" ? temperatures?.F : temperatures?.C}&deg; / You may want to wear:
       </p>
       <ul className='main__clothing'>
         {filteredItems.map((item) => (

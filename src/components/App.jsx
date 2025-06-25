@@ -32,7 +32,7 @@ function App() {
 
           setData({
             city: res?.name,
-            temperature: Math.round(res?.main?.temp),
+            temperatures: {F: Math.round(res?.main?.temp), C: Math.round((res?.main?.temp - 32) * 5/9)},
             isDay: hour <= 6 && hour < 18,
             condition: res?.weather[0]?.main,
           });
@@ -53,7 +53,7 @@ function App() {
       <CurrentTemperatureUnitProvider>
         <Header city={data?.city} openModal={setAddModalIsOpen} />
         <Main
-          temperature={data?.temperature}
+          temperatures={data?.temperatures}
           isDay={data?.isDay}
           condition={data?.condition}
           handleCardClick={handleCardClick}
