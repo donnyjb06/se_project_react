@@ -2,8 +2,9 @@ import { useState } from 'react';
 import './Nav.css';
 import Logo from '../../assets/images/Logo.svg';
 import profilePicture from '../../assets/images/temp-profile-picture.png';
-import ToggleSwitch from "../ToggleSwitch/ToggleSwith"
+import ToggleSwitch from '../ToggleSwitch/ToggleSwith';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
+import { Link } from 'react-router-dom';
 
 const currentDate = new Date().toLocaleString('default', {
   month: 'long',
@@ -21,26 +22,36 @@ const Nav = ({ city, openModal }) => {
   return (
     <nav className='nav'>
       <div className='nav__column'>
-        <img src={Logo} alt='wtwr logo in black' className='nav__logo' />
+        <Link to="/">
+          <img src={Logo} alt='wtwr logo in black' className='nav__logo' />
+        </Link>
         <p className='nav__date-time'>{`${currentDate}, ${city}`}</p>
       </div>
       <div className='nav__column'>
         <ul className={`nav__list ${isOpen ? 'open' : ''}`}>
-          <ToggleSwitch onToggle={handleToggleSwitchChange} optionLeft='F' optionRight='C' className='nav__toggle'/>
+          <ToggleSwitch
+            onToggle={handleToggleSwitchChange}
+            optionLeft='F'
+            optionRight='C'
+            className='nav__toggle'
+          />
           <li className='nav__list-item' onClick={() => openModal(true)}>
-            <a href='#' className='nav__link'>
+            <button type='button' href='#' className='nav__link'>
               + Add clothes
-            </a>
+            </button>
           </li>
           <li className='nav__list-item nav__list-item_profile'>
-            <a href='#' className='nav__link nav__link_profile'>
+            <Link
+              href='#'
+              className='nav__link nav__link_profile'
+              to='/profile'>
               Terrence Tegegne
               <img
                 src={profilePicture}
                 alt='profile picture'
                 className='nav__profile-picture'
               />
-            </a>
+            </Link>
           </li>
         </ul>
         <button

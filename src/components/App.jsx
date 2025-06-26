@@ -9,6 +9,8 @@ import Footer from './Footer/Footer';
 import ItemModal from './ItemModal/ItemModal';
 import { useModalClose } from '../hooks/useModalClose';
 import CurrentTemperatureUnitProvider from '../contexts/CurrentTemperatureUnit/CurrentTemperatureUnit.provider';
+import { Routes, Route } from 'react-router-dom';
+import Profile from './Profile/Profile';
 
 function App() {
   const [data, setData] = useState();
@@ -32,7 +34,10 @@ function App() {
 
           setData({
             city: res?.name,
-            temperatures: {F: Math.round(res?.main?.temp), C: Math.round((res?.main?.temp - 32) * 5/9)},
+            temperatures: {
+              F: Math.round(res?.main?.temp),
+              C: Math.round(((res?.main?.temp - 32) * 5) / 9),
+            },
             isDay: hour <= 6 && hour < 18,
             condition: res?.weather[0]?.main,
           });
@@ -52,12 +57,20 @@ function App() {
     <>
       <CurrentTemperatureUnitProvider>
         <Header city={data?.city} openModal={setAddModalIsOpen} />
-        <Main
-          temperatures={data?.temperatures}
-          isDay={data?.isDay}
-          condition={data?.condition}
-          handleCardClick={handleCardClick}
-        />
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Main
+                temperatures={data?.temperatures}
+                isDay={data?.isDay}
+                condition={data?.condition}
+                handleCardClick={handleCardClick}
+              />
+            }
+          />
+          <Route path='/profile' element={<Profile />} />
+        </Routes>
         <Footer />
 
         {itemModalIsOpen && (
