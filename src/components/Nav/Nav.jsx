@@ -5,6 +5,7 @@ import profilePicture from '../../assets/images/temp-profile-picture.png';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwith';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 import { Link } from 'react-router-dom';
+import hamburgerIcon from "../../assets/images/hamburger-icon.svg"
 
 const currentDate = new Date().toLocaleString('default', {
   month: 'long',
@@ -22,7 +23,7 @@ const Nav = ({ city, openModal }) => {
   return (
     <nav className='nav'>
       <div className='nav__column'>
-        <Link to="/">
+        <Link to='/'>
           <img src={Logo} alt='wtwr logo in black' className='nav__logo' />
         </Link>
         <p className='nav__date-time'>{`${currentDate}, ${city}`}</p>
@@ -58,15 +59,8 @@ const Nav = ({ city, openModal }) => {
           className={`nav__hamburger ${isOpen ? 'open' : ''}`}
           type='button'
           onClick={handleClick}>
-          <span
-            className={`nav__hamburger-icon-line ${
-              isOpen ? 'open' : ''
-            }`}></span>
-          <span
-            className={`nav__hamburger-icon-line ${
-              isOpen ? 'open' : ''
-            }`}></span>
-        </button>
+            <img src={hamburgerIcon} alt="hamburger button icon" className="nav__hamburger-icon" />
+          </button>
       </div>
     </nav>
   );

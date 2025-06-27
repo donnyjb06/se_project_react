@@ -26,6 +26,7 @@
   font-size: 20px;
   line-height: 1.25;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .nav__list_profile {
@@ -49,31 +50,18 @@
 }
 
 .nav__hamburger {
-  --dash-height: 2px;
-  --hamburger-gap: 8px;
   display: none;
   width: 44px;
   height: 44px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: var(--hamburger-gap);
   padding: 16px 8px;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
   transition: 0.3s ease;
-}
-
-/* TODO: fix hamburger icon animation */
-
-.nav__hamburger-icon-line {
-  border-radius: 1px;
-  width: 28px;
-  height: var(--dash-height);
-  background-color: black;
-  position: relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -100,12 +88,11 @@
     padding: 40px;
   }
 
-  .nav__hamburger-icon-line.open:nth-of-type(1) {
-    transform: rotate(10deg);
-  }
-
-  .nav__hamburger-icon-line.open:nth-of-type(2) {
-    transform: rotate(-45deg);
+  .nav__hamburger.open > .nav__hamburger-icon {
+    content: url('../../assets/images/exit-icon-dark.svg');
+    position: relative;
+    top: calc(-40px + 12px);
+    right: calc(-40px + 12px);
   }
 
   .nav__list {
@@ -114,7 +101,6 @@
 
   .nav__toggle {
     order: 1;
-
   }
 
   .nav__list.open {
