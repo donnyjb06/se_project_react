@@ -8,6 +8,7 @@
 .sidebar__name {
   font-size: 20px;
   margin: 0;
+  text-wrap: nowrap;
 }
 
 .sidebar__profile-picture {
