@@ -82,9 +82,8 @@
   }
 
   .nav__column {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 34px;
+    align-items: center;
+    gap: 12px;
   }
 
   .nav__hamburger {

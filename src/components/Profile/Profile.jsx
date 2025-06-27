@@ -1,8 +1,13 @@
-import React from 'react'
+import './Profile.css';
+import Sidebar from '../Sidebar/Sidebar'
+import ClothesSection from '../ClothesSection/ClothesSection'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <main className="profile">
+      <Sidebar />
+      <ClothesSection />
+    </main>
   )
 }
 

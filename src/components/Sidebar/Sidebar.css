@@ -1,0 +1,53 @@
+.sidebar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  align-self: flex-start;
+}
+
+.sidebar__name {
+  font-size: 20px;
+  margin: 0;
+}
+
+.sidebar__profile-picture {
+  max-width: 56px;
+  aspect-ratio: 1 / 1;
+}
+
+.sidebar__button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    border-block: 1px solid rgba(0, 0, 0, 0.3);
+    padding-block: 20px;
+    align-self: stretch;
+    align-items: start;
+  }
+
+  .sidebar__name {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .sidebar__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .sidebar__button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    display: block;
+  }
+
+  .sidebar__button_edit-profile {
+    margin-bottom: 8px;
+  }
+}
