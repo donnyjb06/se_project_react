@@ -48,10 +48,10 @@ function App() {
     setWeatherData();
   }, []);
 
-  const handleCardClick = (item) => {
+  const handleCardClick = React.useCallback((item) => {
     setSelectedItem(item);
     setItemModalIsOpen(true);
-  };
+  }, [setSelectedItem, setItemModalIsOpen]);
 
   return (
     <>

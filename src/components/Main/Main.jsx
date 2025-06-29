@@ -4,16 +4,16 @@ import { defaultClothingItems } from '../../utils/constants';
 import ItemCard from '../ItemCard/ItemCard';
 import { getTemperatureRange } from '../../utils/weatherApi';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
-
+import { useMemo } from 'react';
 
 const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
   const tempRange = getTemperatureRange(temperatures?.F);
 
-  const { currentTemperatureUnit } = useCurrentTemperatureUnit()
+  const { currentTemperatureUnit } = useCurrentTemperatureUnit();
 
-  const filteredItems = defaultClothingItems.filter(
-    (item) => item.weather === tempRange,
-  );
+  const filteredItems = useMemo(() => {
+    return defaultClothingItems.filter((item) => item.weather === tempRange);
+  }, [defaultClothingItems, tempRange]);
 
   return (
     <main className='main'>
@@ -23,7 +23,9 @@ const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
         condition={condition}
       />
       <p className='main__advisory'>
-        Today is {currentTemperatureUnit === "F" ? temperatures?.F : temperatures?.C}&deg; / You may want to wear:
+        Today is{' '}
+        {currentTemperatureUnit === 'F' ? temperatures?.F : temperatures?.C}
+        &deg; / You may want to wear:
       </p>
       <ul className='main__clothing'>
         {filteredItems.map((item) => (
@@ -32,7 +34,13 @@ const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
             name={item.name}
             link={item.link}
             condition={item.weather}
-            handleCardClick={() => handleCardClick(item)}
+            handleCardClick={() =>
+              handleCardClick({
+                name: item.name,
+                link: item.link,
+                condition: item.weather,
+              })
+            }
           />
         ))}
       </ul>
@@ -40,4 +48,4 @@ const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
   );
 };
 
-export default Main;
+export default React.memo(Main);
