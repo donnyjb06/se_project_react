@@ -5,6 +5,7 @@ import ItemCard from '../ItemCard/ItemCard';
 import { getTemperatureRange } from '../../utils/weatherApi';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 import { useMemo } from 'react';
+import { memo } from 'react';
 
 const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
   const tempRange = getTemperatureRange(temperatures?.F);
@@ -48,4 +49,4 @@ const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
   );
 };
 
-export default React.memo(Main);
+export default memo(Main);

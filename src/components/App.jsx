@@ -2,7 +2,7 @@ import './App.css';
 import Header from './Header/Header';
 import { fetchWeatherData } from '../utils/weatherApi';
 import { LOCATION } from '../utils/constants';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Main from './Main/Main';
 import ModalWithForm from './ModalWithForm/ModalWithForm';
 import Footer from './Footer/Footer';
@@ -48,7 +48,7 @@ function App() {
     setWeatherData();
   }, []);
 
-  const handleCardClick = React.useCallback((item) => {
+  const handleCardClick = useCallback((item) => {
     setSelectedItem(item);
     setItemModalIsOpen(true);
   }, [setSelectedItem, setItemModalIsOpen]);
