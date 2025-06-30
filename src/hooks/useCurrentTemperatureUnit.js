@@ -5,7 +5,7 @@ export const useCurrentTemperatureUnit = () => {
   const context = useContext(CurrentTemperatureUnitContext);
 
   if (!context) {
-    throw new Error("useCurrentTemperatureUnit must be used within a CurrentTemperatureUnitProvider")
+    throw new Error("useCurrentTemperatureUnit must be used within a CurrentTemperatureUnitProvider component")
   }
 
   return context
