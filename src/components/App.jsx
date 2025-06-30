@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
@@ -10,7 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 import Profile from './Profile/Profile';
 import AddItemModal from './AddItemModal/AddItemModal';
 import WeatherDataProvider from '../contexts/WeatherData/WeatherData.provider';
-import { addNewItem } from '../utils/api';
+import { addNewItem, getInitialItems } from '../utils/api';
 
 function App() {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false);
@@ -20,6 +20,19 @@ function App() {
 
   useModalClose(addModalIsOpen, setAddModalIsOpen);
   useModalClose(itemModalIsOpen, setItemModalIsOpen);
+
+  useEffect(() => {
+    const getClothingItems = async () => {
+      try {
+        const items = await getInitialItems();
+        setClothingItems(items)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    getClothingItems()
+  }, [])
 
   const handleAddItemSubmit = async (newItem) => {
     try {
@@ -46,7 +59,7 @@ function App() {
           <Routes>
             <Route
               path='/'
-              element={<Main handleCardClick={handleCardClick} />}
+              element={<Main handleCardClick={handleCardClick} items={clothingItems} />}
             />
             <Route path='/profile' element={<Profile />} />
           </Routes>
