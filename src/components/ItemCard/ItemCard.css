@@ -16,6 +16,7 @@
   left: 50%;
   translate: -50% 0;
   top: 15px;
+  text-wrap: nowrap;
 }
 
 .item-card__image {
