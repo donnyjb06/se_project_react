@@ -9,6 +9,15 @@
   right: 24px;
 }
 
+.modal__image-wrapper {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.modal__image {
+  max-width: 100%;
+}
+
 .modal__content {
   padding: 20px 32px;
   display: flex;
@@ -22,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 12px
+  gap: 12px;
 }
 
 .modal__delete {
