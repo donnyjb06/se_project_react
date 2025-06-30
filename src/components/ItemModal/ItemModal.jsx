@@ -5,9 +5,6 @@ import { useClothingData } from "../../hooks/useClothingData";
 const ItemModal = ({ onClose }) => {
 
   const {selectedItem} = useClothingData();
-  console.log(selectedItem)
-
-
 
   return (
     <div className='modal modal_type_item' >
@@ -16,9 +13,12 @@ const ItemModal = ({ onClose }) => {
           <img src={exitModalIcon} alt='x icon for exit button' className='modal__exit-icon' />
         </button>
         <img src={selectedItem.imageUrl} alt={`Picture of ${selectedItem.name}`} className="modal__image"/>
-        <div className="modal__details">
-          <p className='modal__name'>{selectedItem.name}</p>
-          <p className='modal__condition'>Weather: {selectedItem.weather}</p>
+        <div className="modal__content">
+          <div className="modal__details">
+            <p className='modal__name'>{selectedItem.name}</p>
+            <p className='modal__condition'>Weather: {selectedItem.weather}</p>
+          </div>
+          <button type="button" className="modal__delete">Delete item</button>
         </div>
       </div>
     </div>

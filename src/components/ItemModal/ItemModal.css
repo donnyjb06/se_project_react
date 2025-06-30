@@ -9,14 +9,27 @@
   right: 24px;
 }
 
-.modal__details {
+.modal__content {
   padding: 20px 32px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: start;
   font-size: 20px;
   line-height: 1.2;
+}
+
+.modal__details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px
+}
+
+.modal__delete {
+  color: rgba(255, 77, 0, 1);
+  background-color: transparent;
+  border: none;
+  font-size: clamp(16px, 2.5vw, 20px);
 }
 
 @media screen and (max-width: 768px) {
