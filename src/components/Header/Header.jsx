@@ -1,7 +1,10 @@
+import { useWeatherData } from '../../hooks/useWeatherData';
 import Nav from '../Nav/Nav';
 import './Header.css';
 
-const Header = ({ city, openModal }) => {
+const Header = ({ openModal }) => {
+
+  const { city }  = useWeatherData();
 
   return (
     <header className='header'>

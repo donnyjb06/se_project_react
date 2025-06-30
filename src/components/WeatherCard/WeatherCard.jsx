@@ -1,10 +1,12 @@
 import React from 'react';
 import './WeatherCard.css';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
+import { useWeatherData } from '../../hooks/useWeatherData';
 
-const WeatherCard = ({ temperatures, condition, isDay }) => {
+const WeatherCard = () => {
+  const { temperatures, condition, isDay } = useWeatherData();
   const imageUrl = new URL(
-    `../../assets/images/cards/${condition?.toLowerCase()}_${
+    `../../assets/images/cards/${condition.toLowerCase()}_${
       isDay ? 'day' : 'night'
     }.png`,
     import.meta.url,
@@ -15,7 +17,7 @@ const WeatherCard = ({ temperatures, condition, isDay }) => {
     <div className='weather-card'>
       <h1 className='weather-card__temperature'>
         {`${
-          currentTemperatureUnit === 'F' ? temperatures?.F : temperatures?.C
+          currentTemperatureUnit === 'F' ? temperatures.F : temperatures.C
         }${currentTemperatureUnit}`}
         &deg;
       </h1>

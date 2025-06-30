@@ -6,8 +6,10 @@ import { getTemperatureRange } from '../../utils/weatherApi';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 import { useMemo } from 'react';
 import { memo } from 'react';
+import { useWeatherData } from '../../hooks/useWeatherData';
 
-const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
+const Main = ({ handleCardClick }) => {
+  const { temperatures } = useWeatherData();
   const tempRange = getTemperatureRange(temperatures?.F);
 
   const { currentTemperatureUnit } = useCurrentTemperatureUnit();
@@ -18,14 +20,10 @@ const Main = ({ temperatures, isDay, condition, handleCardClick }) => {
 
   return (
     <main className='main'>
-      <WeatherCard
-        temperatures={temperatures}
-        isDay={isDay}
-        condition={condition}
-      />
+      <WeatherCard />
       <p className='main__advisory'>
         Today is{' '}
-        {currentTemperatureUnit === 'F' ? temperatures?.F : temperatures?.C}
+        {currentTemperatureUnit === 'F' ? temperatures.F : temperatures.C}
         &deg; / You may want to wear:
       </p>
       <ul className='main__clothing'>
