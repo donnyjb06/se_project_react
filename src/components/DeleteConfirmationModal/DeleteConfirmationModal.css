@@ -1,0 +1,29 @@
+.modal__type_delete > .modal__container {
+  gap: 40px;
+}
+
+.modal__type_delete .modal__title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.modal__button {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__button_type_delete {
+  color: rgba(255, 77, 0, 1);
+
+}

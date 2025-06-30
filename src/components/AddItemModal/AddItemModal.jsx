@@ -10,7 +10,7 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
 
   const { handleAddItemSubmit } = useClothingData();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const newItem = {

@@ -1,6 +1,6 @@
 import { ClothingDataContext } from './ClothingData.context';
 import { useEffect, useState, useCallback } from 'react';
-import { getInitialItems, addNewItem } from '../../utils/api';
+import { getInitialItems, addNewItem, deleteItem } from '../../utils/api';
 
 const ClothingDataProvider = ({ children, onItemModalOpen }) => {
   const [selectedItem, setSelectedItem] = useState();
@@ -36,8 +36,17 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
       [setSelectedItem, onItemModalOpen],
     );
 
+  const handleDeleteItem = async () => {
+    try {
+      await deleteItem(selectedItem._id);
+      setClothingItems(prevItems => (prevItems.filter(item => item._id !== selectedItem._id)))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
-    <ClothingDataContext.Provider value={{selectedItem, clothingItems, handleAddItemSubmit, handleCardClick}}>
+    <ClothingDataContext.Provider value={{selectedItem, clothingItems, handleAddItemSubmit, handleCardClick, handleDeleteItem}}>
       {children}
     </ClothingDataContext.Provider>
   )

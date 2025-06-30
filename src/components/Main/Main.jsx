@@ -36,11 +36,7 @@ const Main = () => {
             link={item.imageUrl}
             condition={item.weather}
             handleCardClick={() =>
-              handleCardClick({
-                name: item.name,
-                imageUrl: item.imageUrl,
-                weather: item.weather,
-              })
+              handleCardClick(item)
             }
           />
         ))}

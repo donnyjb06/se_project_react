@@ -4,6 +4,7 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .item-card__name {

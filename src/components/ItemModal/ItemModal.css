@@ -30,6 +30,7 @@
   background-color: transparent;
   border: none;
   font-size: clamp(16px, 2.5vw, 20px);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

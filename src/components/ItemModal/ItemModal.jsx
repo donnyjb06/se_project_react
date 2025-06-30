@@ -2,9 +2,14 @@ import exitModalIcon from "../../assets/images/exit-icon-white.svg"
 import "./ItemModal.css"
 import { useClothingData } from "../../hooks/useClothingData";
 
-const ItemModal = ({ onClose }) => {
+const ItemModal = ({ onClose, onDelete }) => {
 
   const {selectedItem} = useClothingData();
+
+  const handleDelete = () => {
+    onClose(false)
+    onDelete(true)
+  }
 
   return (
     <div className='modal modal_type_item' >
@@ -18,7 +23,7 @@ const ItemModal = ({ onClose }) => {
             <p className='modal__name'>{selectedItem.name}</p>
             <p className='modal__condition'>Weather: {selectedItem.weather}</p>
           </div>
-          <button type="button" className="modal__delete">Delete item</button>
+          <button type="button" className="modal__delete" onClick={handleDelete}>Delete item</button>
         </div>
       </div>
     </div>

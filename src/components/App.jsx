@@ -11,13 +11,16 @@ import Profile from './Profile/Profile';
 import AddItemModal from './AddItemModal/AddItemModal';
 import WeatherDataProvider from '../contexts/WeatherData/WeatherData.provider';
 import ClothingDataProvider from '../contexts/ClothingData/ClothingData.provider';
+import DeleteConfirmationModal from './DeleteConfirmationModal/DeleteConfirmationModal';
 
 function App() {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false);
   const [itemModalIsOpen, setItemModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   useModalClose(addModalIsOpen, setAddModalIsOpen);
   useModalClose(itemModalIsOpen, setItemModalIsOpen);
+  useModalClose(deleteModalIsOpen, setDeleteModalIsOpen);
 
   return (
     <>
@@ -35,7 +38,9 @@ function App() {
             <Footer />
           </WeatherDataProvider>
 
-          {itemModalIsOpen && <ItemModal onClose={setItemModalIsOpen} />}
+          {itemModalIsOpen && <ItemModal onClose={setItemModalIsOpen} onDelete={setDeleteModalIsOpen}/>}
+
+          {deleteModalIsOpen && <DeleteConfirmationModal onClose={setDeleteModalIsOpen}/>}
 
           <AddItemModal
             isOpen={addModalIsOpen}
