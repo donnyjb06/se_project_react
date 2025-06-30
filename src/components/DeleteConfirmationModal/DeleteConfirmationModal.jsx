@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useClothingData } from '../../hooks/useClothingData';
 import './DeleteConfirmationModal.css';
+import exitIcon from '../../assets/images/exit-icon-light.svg';
 
 const DeleteConfirmationModal = ({ onClose }) => {
   const { handleDeleteItem } = useClothingData();
@@ -16,6 +17,13 @@ const DeleteConfirmationModal = ({ onClose }) => {
   return (
     <div className='modal modal__type_delete'>
       <div className='modal__container'>
+        <button className='modal__exit' onClick={() => onClose(false)}>
+          <img
+            src={exitIcon}
+            alt='x icon for exit button'
+            className='modal__exit-icon'
+          />
+        </button>
         <h2 className='modal__title'>
           Are you sure to want to delete this item? This action is irreversible.
         </h2>
