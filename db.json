@@ -101,6 +101,12 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Supreme Hoodie",
+      "imageUrl": "https://store.yankeekicks.com/cdn/shop/files/1725812999176_Screenshot_202024-09-08_20at_2012.27.50_E2_80_AFPM_1c8534ad-8fbe-4559-a72f-13e762ff8c7d.png?v=1726541099",
+      "weather": "warm",
+      "_id": 17
     }
   ]
 }

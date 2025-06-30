@@ -37,7 +37,7 @@ function App() {
   const handleAddItemSubmit = async (newItem) => {
     try {
       const addedItem = await addNewItem(newItem)
-      setClothingItems(prevItems => ({addedItem, ...prevItems}))
+      setClothingItems(prevItems => ([addedItem, ...prevItems]))
     } catch (error) {
       console.error(error)
     }
