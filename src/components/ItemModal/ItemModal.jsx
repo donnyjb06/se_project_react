@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import exitModalIcon from "../../assets/images/exit-icon-white.svg"
 import "./ItemModal.css"
 
