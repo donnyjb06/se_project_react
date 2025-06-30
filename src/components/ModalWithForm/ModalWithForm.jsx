@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import exitIcon from "../../assets/images/exit-icon-light.svg"
 import './ModalWithForm.css'
 
-const ModalWithForm = ({ title, btnLabel, formId, children, onClose }) => {
+const ModalWithForm = ({ title, btnLabel, formId, children, onClose, onSubmit }) => {
   const [isValid, setIsValid] = useState(false)
 
   const handleInputChange = (e) => {
     const form = document.forms[formId]
     setIsValid(form.checkValidity())
+  }
+
+  const handleSubmit = (event) => {
+    onSubmit(event);
+    onClose(false)
   }
 
   return (
@@ -17,7 +22,7 @@ const ModalWithForm = ({ title, btnLabel, formId, children, onClose }) => {
           <img src={exitIcon} alt="x icon for exit button" className='modal__exit-icon'/>
         </button>
         <h2 className='modal__title'>{title}</h2>
-        <form className='form' id={formId} name={formId} onChange={handleInputChange}>
+        <form className='form' id={formId} name={formId} onChange={handleInputChange} onSubmit={handleSubmit}>
           {children}
           <button className='form__submit' disabled={!isValid}>{btnLabel}</button>
         </form>

@@ -10,6 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 import Profile from './Profile/Profile';
 import AddItemModal from './AddItemModal/AddItemModal';
 import WeatherDataProvider from '../contexts/WeatherData/WeatherData.provider';
+import { addNewItem } from '../utils/api';
 
 function App() {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false);
@@ -20,8 +21,13 @@ function App() {
   useModalClose(addModalIsOpen, setAddModalIsOpen);
   useModalClose(itemModalIsOpen, setItemModalIsOpen);
 
-  const handleAddItemSubmit = (item) => {
-    setClothingItems((prevItems) => [item, ...prevItems]);
+  const handleAddItemSubmit = async (newItem) => {
+    try {
+      const addedItem = await addNewItem(newItem)
+      setClothingItems(prevItems => ({addedItem, ...prevItems}))
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const handleCardClick = useCallback(

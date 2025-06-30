@@ -1,21 +1,29 @@
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './AddItemModal.css';
 import { useState } from 'react';
+import { addNewItem } from '../../utils/api';
 
 const AddItemModal = ({ onAddItem, isOpen, onCloseModal }) => {
   const [name, setName] = useState();
   const [link, setLink] = useState();
   const [tempRange, setTempRange] = useState('hot');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    onAddItem(item);
+    const newItem = {
+      name,
+      imageUrl: link,
+      weather: tempRange
+    }
+
+    onAddItem(newItem)
   };
 
   return (
     isOpen && (
       <ModalWithForm
+        onSubmit={handleSubmit}
         title='New garment'
         btnLabel='Add garment'
         formId='add-garment-form'
