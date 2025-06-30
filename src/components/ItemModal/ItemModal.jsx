@@ -15,7 +15,7 @@ const ItemModal = ({ onClose }) => {
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitModalIcon} alt='x icon for exit button' className='modal__exit-icon' />
         </button>
-        <img src={selectedItem.imageUrl} alt={`Picture of ${name}`} className="modal__image"/>
+        <img src={selectedItem.imageUrl} alt={`Picture of ${selectedItem.name}`} className="modal__image"/>
         <div className="modal__details">
           <p className='modal__name'>{selectedItem.name}</p>
           <p className='modal__condition'>Weather: {selectedItem.weather}</p>
