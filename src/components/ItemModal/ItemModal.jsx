@@ -1,7 +1,13 @@
 import exitModalIcon from "../../assets/images/exit-icon-white.svg"
 import "./ItemModal.css"
+import { useClothingData } from "../../hooks/useClothingData";
 
-const ItemModal = ({ link, name, condition, onClose }) => {
+const ItemModal = ({ onClose }) => {
+
+  const {selectedItem} = useClothingData();
+  console.log(selectedItem)
+
+
 
   return (
     <div className='modal modal_type_item' >
@@ -9,10 +15,10 @@ const ItemModal = ({ link, name, condition, onClose }) => {
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitModalIcon} alt='x icon for exit button' className='modal__exit-icon' />
         </button>
-        <img src={link} alt={`Picture of ${name}`} className="modal__image"/>
+        <img src={selectedItem.imageUrl} alt={`Picture of ${name}`} className="modal__image"/>
         <div className="modal__details">
-          <p className='modal__name'>{name}</p>
-          <p className='modal__condition'>Weather: {condition}</p>
+          <p className='modal__name'>{selectedItem.name}</p>
+          <p className='modal__condition'>Weather: {selectedItem.weather}</p>
         </div>
       </div>
     </div>

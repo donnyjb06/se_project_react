@@ -1,7 +1,10 @@
 import './ClothesSection.css';
 import ItemCard from '../ItemCard/ItemCard';
+import { useClothingData } from '../../hooks/useClothingData';
 
-const ClothesSection = ({ items }) => {
+const ClothesSection = () => {
+  const {clothingItems: items} = useClothingData()
+
   return (
     <div className='clothes'>
       <div className='clothes__header'>

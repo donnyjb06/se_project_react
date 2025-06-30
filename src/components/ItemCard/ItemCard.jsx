@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemCard.css';
 
-const ItemCard = ({ link, name, condition, handleCardClick }) => {
+const ItemCard = ({ link, name, handleCardClick }) => {
   return (
     <li className='item-card' onClick={handleCardClick}>
       <p className='item-card__name'>{name}</p>

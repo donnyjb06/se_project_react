@@ -6,12 +6,15 @@ import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit
 import { useMemo } from 'react';
 import { memo } from 'react';
 import { useWeatherData } from '../../hooks/useWeatherData';
+import {useClothingData} from "../../hooks/useClothingData"
 
-const Main = ({ handleCardClick, items }) => {
+const Main = () => {
   const { temperatures } = useWeatherData();
   const tempRange = getTemperatureRange(temperatures?.F);
 
   const { currentTemperatureUnit } = useCurrentTemperatureUnit();
+
+  const {handleCardClick, clothingItems: items } = useClothingData();
 
   const filteredItems = useMemo(() => {
     return items.filter((item) => item.weather === tempRange);
@@ -35,8 +38,8 @@ const Main = ({ handleCardClick, items }) => {
             handleCardClick={() =>
               handleCardClick({
                 name: item.name,
-                link: item.imageUrl,
-                condition: item.weather,
+                imageUrl: item.imageUrl,
+                weather: item.weather,
               })
             }
           />

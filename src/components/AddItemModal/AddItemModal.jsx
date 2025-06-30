@@ -1,12 +1,14 @@
+import { useClothingData } from '../../hooks/useClothingData';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './AddItemModal.css';
 import { useState } from 'react';
-import { addNewItem } from '../../utils/api';
 
-const AddItemModal = ({ onAddItem, isOpen, onCloseModal }) => {
+const AddItemModal = ({ isOpen, onCloseModal }) => {
   const [name, setName] = useState();
   const [link, setLink] = useState();
   const [tempRange, setTempRange] = useState('hot');
+
+  const { handleAddItemSubmit } = useClothingData();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +19,7 @@ const AddItemModal = ({ onAddItem, isOpen, onCloseModal }) => {
       weather: tempRange
     }
 
-    onAddItem(newItem)
+    handleAddItemSubmit(newItem)
   };
 
   return (
