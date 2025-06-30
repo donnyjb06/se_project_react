@@ -24,4 +24,12 @@ const addNewItem = async (item) => {
   return handleResponse(res)
 }
 
-export { getInitialItems, addNewItem }
+const deleteItem = async (id) => {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  })
+
+  return handleResponse(res)
+}
+
+export { getInitialItems, addNewItem, deleteItem }
