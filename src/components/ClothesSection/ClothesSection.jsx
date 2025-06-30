@@ -1,26 +1,26 @@
 import './ClothesSection.css';
-import { defaultClothingItems } from '../../utils/constants';
 import ItemCard from '../ItemCard/ItemCard';
 
-const ClothesSection = () => {
+const ClothesSection = ({ items }) => {
   return (
     <div className='clothes'>
-      <div className="clothes__header">
-        <h2 className="clothes__title">Your items</h2>
-        <button className="clothes__add-new">+ Add new</button>
+      <div className='clothes__header'>
+        <h2 className='clothes__title'>Your items</h2>
+        <button className='clothes__add-new'>+ Add new</button>
       </div>
 
-      <ul className="clothes__gallery">
-        {defaultClothingItems.map(item => (
+      <ul className='clothes__gallery'>
+        {items.map((item) => (
           <ItemCard
             key={item._id}
-            link={item.link}
+            link={item.imageUrl}
             name={item.name}
-            condition={item.condition} />
+            condition={item.weather}
+          />
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ClothesSection
+export default ClothesSection;

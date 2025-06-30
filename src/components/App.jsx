@@ -61,7 +61,7 @@ function App() {
               path='/'
               element={<Main handleCardClick={handleCardClick} items={clothingItems} />}
             />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<Profile items={clothingItems}/>} />
           </Routes>
           <Footer />
         </WeatherDataProvider>
