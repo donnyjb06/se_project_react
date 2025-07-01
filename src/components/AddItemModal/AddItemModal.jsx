@@ -10,7 +10,7 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
 
   const { handleAddItemSubmit } = useClothingData();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const newItem = {
@@ -19,7 +19,10 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
       weather: tempRange
     }
 
-    handleAddItemSubmit(newItem)
+    await handleAddItemSubmit(newItem)
+    setName("")
+    setLink("")
+    setTempRange("hot")
   };
 
   return (
