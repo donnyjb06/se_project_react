@@ -6,11 +6,11 @@ import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit
 import { useMemo } from 'react';
 import { memo } from 'react';
 import { useWeatherData } from '../../hooks/useWeatherData';
-import {useClothingData} from "../../hooks/useClothingData"
+import {useClothingData} from "../../hooks/useClothingData";
 
 const Main = () => {
   const { temperatures } = useWeatherData();
-  const tempRange = getTemperatureRange(temperatures?.F);
+  const tempRange = getTemperatureRange(temperatures.F);
 
   const { currentTemperatureUnit } = useCurrentTemperatureUnit();
 
