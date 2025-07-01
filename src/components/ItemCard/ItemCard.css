@@ -5,6 +5,8 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  max-width: 325px;
+  height: 100%;
 }
 
 .item-card__name {
@@ -17,10 +19,11 @@
   left: 50%;
   translate: -50% 0;
   top: 15px;
-  text-wrap: nowrap;
+  text-align: center;
 }
 
 .item-card__image {
-  object-fit: contain;
-  width: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  min-height: 100%;
 }

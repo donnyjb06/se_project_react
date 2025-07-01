@@ -5,6 +5,7 @@
   height: 80px;
   margin-block-start: 28px;
   transition: 0.3 ease;
+  align-self: stretch;
 }
 
 .weather-card__background {
