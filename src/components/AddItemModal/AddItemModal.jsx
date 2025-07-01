@@ -23,13 +23,13 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
   };
 
   return (
-    isOpen && (
       <ModalWithForm
         onSubmit={handleSubmit}
         title='New garment'
         btnLabel='Add garment'
         formId='add-garment-form'
-        onClose={onCloseModal}>
+        onClose={onCloseModal}
+        isOpen={isOpen}>
         <label className='form__label form__label_for_text'>
           Name
           <input
@@ -110,7 +110,6 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
           </div>
         </fieldset>
       </ModalWithForm>
-    )
   );
 };
 

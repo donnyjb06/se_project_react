@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import exitIcon from "../../assets/images/exit-icon-light.svg"
 import './ModalWithForm.css'
 
-const ModalWithForm = ({ title, btnLabel, formId, children, onClose, onSubmit }) => {
+const ModalWithForm = ({ title, btnLabel, formId, children, onClose, onSubmit, isOpen }) => {
   const [isValid, setIsValid] = useState(false)
   const submitButton = useRef()
 
@@ -19,7 +19,7 @@ const ModalWithForm = ({ title, btnLabel, formId, children, onClose, onSubmit })
   }
 
   return (
-    <div className={`modal modal_type_${formId}`} role='dialog' aria-modal="true">
+    <div className={`modal modal_type_${formId} ${isOpen ? 'modal_is-opened' : ''}`} role='dialog' aria-modal="true">
       <div className='modal__container'>
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitIcon} alt="x icon for exit button" className='modal__exit-icon'/>

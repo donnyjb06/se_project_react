@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
-        <CurrentTemperatureUnitProvider >
+        <CurrentTemperatureUnitProvider>
           <WeatherDataProvider>
             <Header openModal={setAddModalIsOpen} />
             <Routes>
@@ -38,9 +38,16 @@ function App() {
             <Footer />
           </WeatherDataProvider>
 
-          {itemModalIsOpen && <ItemModal onClose={setItemModalIsOpen} onDelete={setDeleteModalIsOpen}/>}
+          <ItemModal
+            onClose={setItemModalIsOpen}
+            onDelete={setDeleteModalIsOpen}
+            isOpen={itemModalIsOpen}
+          />
 
-          {deleteModalIsOpen && <DeleteConfirmationModal onClose={setDeleteModalIsOpen}/>}
+          <DeleteConfirmationModal
+            onClose={setDeleteModalIsOpen}
+            isOpen={deleteModalIsOpen}
+          />
 
           <AddItemModal
             isOpen={addModalIsOpen}

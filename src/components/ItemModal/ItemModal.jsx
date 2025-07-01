@@ -2,7 +2,7 @@ import exitModalIcon from "../../assets/images/exit-icon-white.svg"
 import "./ItemModal.css"
 import { useClothingData } from "../../hooks/useClothingData";
 
-const ItemModal = ({ onClose, onDelete }) => {
+const ItemModal = ({ onClose, onDelete, isOpen }) => {
 
   const {selectedItem} = useClothingData();
 
@@ -12,7 +12,7 @@ const ItemModal = ({ onClose, onDelete }) => {
   }
 
   return (
-    <div className='modal modal_type_item' >
+    <div className={`modal modal_type_item ${isOpen ? 'modal_is-opened' : ''}`}>
       <div className='modal__container'>
         <button className='modal__exit' onClick={() => onClose(false)}>
           <img src={exitModalIcon} alt='x icon for exit button' className='modal__exit-icon' />
