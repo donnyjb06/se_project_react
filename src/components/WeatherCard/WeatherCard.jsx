@@ -1,4 +1,3 @@
-import React from 'react';
 import './WeatherCard.css';
 import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 import { useWeatherData } from '../../hooks/useWeatherData';

@@ -1,4 +1,3 @@
-import React from 'react';
 import './ItemCard.css';
 
 const ItemCard = ({ link, name, handleCardClick }) => {

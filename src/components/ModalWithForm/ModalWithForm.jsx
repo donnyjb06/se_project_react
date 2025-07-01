@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import exitIcon from "../../assets/images/exit-icon-light.svg"
 import './ModalWithForm.css'
 
