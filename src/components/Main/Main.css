@@ -12,8 +12,9 @@
 
 .main__clothing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(164px, 1fr));
+  grid-template-columns: repeat(4, minmax(164px, 325px));
   gap: 20px;
+  justify-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -23,6 +24,14 @@
 
   .main__clothing {
     gap: 15px;
-    justify-items: center;
+    justify-content: start;
+    grid-template-columns: repeat(3, minmax(164px, 325px));
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .main__clothing {
+    grid-template-columns: repeat(auto-fit, minmax(164px, 1fr));
+    justify-content: center;
   }
 }
