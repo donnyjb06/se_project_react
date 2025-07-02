@@ -14,7 +14,6 @@ const currentDate = new Date().toLocaleString('default', {
 
 const Nav = ({ city, openModal }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { handleToggleSwitchChange } = useCurrentTemperatureUnit();
 
   const handleClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -31,7 +30,6 @@ const Nav = ({ city, openModal }) => {
       <div className='nav__column'>
         <ul className={`nav__list ${isOpen ? 'open' : ''}`}>
           <ToggleSwitch
-            onToggle={handleToggleSwitchChange}
             optionLeft='F'
             optionRight='C'
             className='nav__toggle'
