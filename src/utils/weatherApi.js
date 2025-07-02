@@ -1,13 +1,12 @@
 import { API_KEY } from './constants';
+import { handleResponse } from './api';
 
-const fetchWeatherData = ({ longitude, latitude }) => {
-  return fetch(
+const fetchWeatherData = async ({ longitude, latitude }) => {
+  const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${API_KEY}`,
-  ).then((res) => {
-    if (res.ok) return res.json();
+  );
 
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  return handleResponse(res, "An error has occured when attempting to fetch weather data")
 };
 
 const getTemperatureRange = (temperature) => {

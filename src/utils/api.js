@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:3001/items';
 
-const handleResponse = (res) => {
-  if (!res.ok) throw new Error(`Error: ${res.status}`)
+export const handleResponse = (res, errorMessage) => {
+  if (!res.ok) throw new Error(`Error: ${errorMessage}`)
     
   return res.json()
 }
@@ -9,7 +9,7 @@ const handleResponse = (res) => {
 const getInitialItems = async () => {
   const res = await fetch(BASE_URL);
   
-  return handleResponse(res)
+  return handleResponse(res, "An error has occured when attempting to fetch clothing data")
 }
 
 const addNewItem = async (item) => {
@@ -21,7 +21,7 @@ const addNewItem = async (item) => {
     body: JSON.stringify(item)
   })
 
-  return handleResponse(res)
+  return handleResponse(res, "An error has occured when attempting to add new clothing item")
 }
 
 const deleteItem = async (id) => {
@@ -29,7 +29,7 @@ const deleteItem = async (id) => {
     method: "DELETE",
   })
 
-  return handleResponse(res)
+  return handleResponse(res, "An error has occured when attempting to delete clothing item")
 }
 
 export { getInitialItems, addNewItem, deleteItem }
