@@ -38,7 +38,7 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
       setSelectedItem({
         name: item.name,
         _id: item._id,
-        imageUrl: item._imageUrl,
+        imageUrl: item.imageUrl,
         weather: item.weather,
       });
       onItemModalOpen(true);
