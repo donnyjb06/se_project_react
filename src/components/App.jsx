@@ -23,7 +23,6 @@ function App() {
   useModalClose(deleteModalIsOpen, setDeleteModalIsOpen);
 
   return (
-    <>
       <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
         <CurrentTemperatureUnitProvider>
           <WeatherDataProvider>
@@ -55,7 +54,6 @@ function App() {
           />
         </CurrentTemperatureUnitProvider>
       </ClothingDataProvider>
-    </>
   );
 }
 

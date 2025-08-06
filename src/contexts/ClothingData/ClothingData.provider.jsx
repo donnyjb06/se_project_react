@@ -14,7 +14,7 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
   useEffect(() => {
     const getClothingItems = async () => {
       try {
-        const items = await getInitialItems();
+        const items = (await getInitialItems()).reverse();
         setClothingItems(items);
       } catch (error) {
         console.error(error);

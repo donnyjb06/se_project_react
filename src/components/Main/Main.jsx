@@ -26,7 +26,7 @@ const Main = () => {
       <p className='main__advisory'>
         Today is{' '}
         {currentTemperatureUnit === 'F' ? temperatures.F : temperatures.C}
-        &deg; / You may want to wear:
+        &deg;{currentTemperatureUnit === "F" ? "F" : "C"} / You may want to wear:
       </p>
       <ul className='main__clothing'>
         {filteredItems.map((item) => (
