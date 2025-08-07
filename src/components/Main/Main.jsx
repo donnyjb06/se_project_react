@@ -6,7 +6,8 @@ import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit
 import { useMemo } from 'react';
 import { memo } from 'react';
 import { useWeatherData } from '../../hooks/useWeatherData';
-import {useClothingData} from "../../hooks/useClothingData";
+import { useClothingData } from '../../hooks/useClothingData';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
   const { temperatures } = useWeatherData();
@@ -14,7 +15,7 @@ const Main = () => {
 
   const { currentTemperatureUnit } = useCurrentTemperatureUnit();
 
-  const {handleCardClick, clothingItems: items } = useClothingData();
+  const { handleCardClick, clothingItems: items } = useClothingData();
 
   const filteredItems = useMemo(() => {
     return items.filter((item) => item.weather === tempRange);
@@ -26,7 +27,8 @@ const Main = () => {
       <p className='main__advisory'>
         Today is{' '}
         {currentTemperatureUnit === 'F' ? temperatures.F : temperatures.C}
-        &deg;{currentTemperatureUnit === "F" ? "F" : "C"} / You may want to wear:
+        &deg;{currentTemperatureUnit === 'F' ? 'F' : 'C'} / You may want to
+        wear:
       </p>
       <ul className='main__clothing'>
         {filteredItems.map((item) => (
@@ -35,9 +37,7 @@ const Main = () => {
             name={item.name}
             link={item.imageUrl}
             condition={item.weather}
-            handleCardClick={() =>
-              handleCardClick(item)
-            }
+            handleCardClick={() => handleCardClick(item)}
           />
         ))}
       </ul>

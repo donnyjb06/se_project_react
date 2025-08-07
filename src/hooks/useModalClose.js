@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const useModalClose = (isOpen, onClose) => {
+const useModalClose = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -8,13 +10,13 @@ const useModalClose = (isOpen, onClose) => {
 
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
-        onClose(false);
+        setIsOpen(false);
       }
     };
 
     const handleClick = (event) => {
       if (event.target.classList.contains('modal')) {
-        onClose(false);
+        setIsOpen(false);
       }
     };
 
@@ -25,7 +27,9 @@ const useModalClose = (isOpen, onClose) => {
       document.removeEventListener('keydown', handleEscape);
       document.removeEventListener('click', handleClick);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
+
+  return [isOpen, setIsOpen]
 };
 
 export { useModalClose };

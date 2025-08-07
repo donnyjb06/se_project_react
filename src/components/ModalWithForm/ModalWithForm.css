@@ -127,6 +127,22 @@
   flex-shrink: 0;
 }
 
+.form__submit-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal__auth-redirect {
+  background-color: transparent;
+  border: none;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .form__submit {
   --clr-bg: black;
   line-height: 1.25;
