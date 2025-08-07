@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3001/items';
+import { BASE_URL } from "./constants"
 
 export const handleResponse = (res, errorMessage) => {
   if (!res.ok) throw new Error(`Error: ${errorMessage}`)
@@ -7,13 +7,13 @@ export const handleResponse = (res, errorMessage) => {
 }
 
 const getInitialItems = async () => {
-  const res = await fetch(BASE_URL);
+  const res = await fetch(`${BASE_URL}/items`);
   
   return handleResponse(res, "An error has occured when attempting to fetch clothing data")
 }
 
 const addNewItem = async (item) => {
-  const res = await fetch(BASE_URL, {
+  const res = await fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": 'application/json'
@@ -25,7 +25,7 @@ const addNewItem = async (item) => {
 }
 
 const deleteItem = async (id) => {
-  const res = await fetch(`${BASE_URL}/${id}`, {
+  const res = await fetch(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
   })
 
