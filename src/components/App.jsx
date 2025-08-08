@@ -13,6 +13,8 @@ import ClothingDataProvider from '../contexts/ClothingData/ClothingData.provider
 import DeleteConfirmationModal from './DeleteConfirmationModal/DeleteConfirmationModal';
 import RegisterModal from './RegisterModal/RegisterModal';
 import LoginModal from './LoginModal/LoginModal';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import UserDataProvider from '../contexts/UserData/UserData.provider';
 
 function App() {
   const [addModalIsOpen, setAddModalIsOpen] = useModalClose();
@@ -22,47 +24,60 @@ function App() {
   const [loginModalIsOpen, setLoginModalIsOpen] = useModalClose();
 
   return (
-    <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
-      <CurrentTemperatureUnitProvider>
-        <WeatherDataProvider>
-          <Header openModal={setAddModalIsOpen} />
-          <Routes>
-            <Route path='/' element={<Main />} />
-            <Route
-              path='/profile'
-              element={<Profile handleOpenFormModal={setAddModalIsOpen} />}
-            />
-          </Routes>
-          <Footer />
-        </WeatherDataProvider>
+    <UserDataProvider>
+      <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
+        <CurrentTemperatureUnitProvider>
+          <WeatherDataProvider>
+            <Header openModal={setAddModalIsOpen} />
+            <Routes>
+              <Route
+                path='/'
+                element={
+                  <ProtectedRoute anonymous>
+                    <Main />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path='/profile'
+                element={
+                  <ProtectedRoute>
+                    <Profile handleOpenFormModal={setAddModalIsOpen} />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </WeatherDataProvider>
 
-        <ItemModal
-          onClose={setItemModalIsOpen}
-          onDelete={setDeleteModalIsOpen}
-          isOpen={itemModalIsOpen}
-        />
+          <ItemModal
+            onClose={setItemModalIsOpen}
+            onDelete={setDeleteModalIsOpen}
+            isOpen={itemModalIsOpen}
+          />
 
-        <DeleteConfirmationModal
-          onClose={setDeleteModalIsOpen}
-          isOpen={deleteModalIsOpen}
-        />
+          <DeleteConfirmationModal
+            onClose={setDeleteModalIsOpen}
+            isOpen={deleteModalIsOpen}
+          />
 
-        <AddItemModal
-          isOpen={addModalIsOpen}
-          onCloseModal={setAddModalIsOpen}
-        />
-        <RegisterModal
-          onCloseModal={setRegisterModalIsOpen}
-          isOpen={registerModalIsOpen}
-          openLoginModal={setLoginModalIsOpen}
-        />
-        <LoginModal
-                    onCloseModal={setLoginModalIsOpen}
-                    isOpen={loginModalIsOpen}
-                    openRegisterModal={setRegisterModalIsOpen}
-                  />
-      </CurrentTemperatureUnitProvider>
-    </ClothingDataProvider>
+          <AddItemModal
+            isOpen={addModalIsOpen}
+            onCloseModal={setAddModalIsOpen}
+          />
+          <RegisterModal
+            onCloseModal={setRegisterModalIsOpen}
+            isOpen={registerModalIsOpen}
+            openLoginModal={setLoginModalIsOpen}
+          />
+          <LoginModal
+            onCloseModal={setLoginModalIsOpen}
+            isOpen={loginModalIsOpen}
+            openRegisterModal={setRegisterModalIsOpen}
+          />
+        </CurrentTemperatureUnitProvider>
+      </ClothingDataProvider>
+    </UserDataProvider>
   );
 }
 
