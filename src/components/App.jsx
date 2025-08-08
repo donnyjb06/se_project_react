@@ -28,7 +28,7 @@ function App() {
       <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
         <CurrentTemperatureUnitProvider>
           <WeatherDataProvider>
-            <Header openModal={setAddModalIsOpen} />
+            <Header openModal={setAddModalIsOpen} openLoginModal={setLoginModalIsOpen} openRegisterModal={setRegisterModalIsOpen}/>
             <Routes>
               <Route
                 path='/'
