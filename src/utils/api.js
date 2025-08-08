@@ -54,7 +54,7 @@ const getUserInfo = async (token) => {
       throw new Error(res.message);
     }
 
-    return { username, email, avatar, _id };
+    return handleResponse(res, "An error has occured when attempting to fetch user info.")
   } catch (error) {
     throw error;
   }

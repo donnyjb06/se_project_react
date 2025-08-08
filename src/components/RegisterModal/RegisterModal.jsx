@@ -1,16 +1,30 @@
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import { useState } from 'react';
+import { useUserData } from '../../hooks/useUserData';
 
-const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
+const RegisterModal = ({ isOpen, onCloseModal, openLoginModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
+  const { handleRegister } = useUserData();
 
   const handleModalSwitch = () => {
     onCloseModal(false);
-    openLoginModal(true)
-  }
+    setEmail('');
+    setName('');
+    setPassword('');
+    setUrl('');
+    openLoginModal(true);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await handleRegister(name, email, url, password);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <ModalWithForm
@@ -19,7 +33,8 @@ const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
       btnLabel='Register'
       isOpen={isOpen}
       onClose={onCloseModal}
-      formId="register-form"
+      formId='register-form'
+      onSubmit={handleSubmit}
       switchModal={handleModalSwitch}>
       <label className='form__label form__label_for_text'>
         Email*
@@ -28,7 +43,7 @@ const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
           onChange={(e) => setEmail(e.target.value)}
           className='form__input'
           placeholder='Email'
-          value={email || ""}
+          value={email || ''}
           required
         />
       </label>
@@ -39,7 +54,7 @@ const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
           onChange={(e) => setPassword(e.target.value)}
           className='form__input'
           placeholder='Password'
-          value={password || ""}
+          value={password || ''}
           required
         />
       </label>
@@ -50,7 +65,7 @@ const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
           onChange={(e) => setName(e.target.value)}
           className='form__input'
           placeholder='Name'
-          value={name || ""}
+          value={name || ''}
         />
       </label>
       <label className='form__label form__label_for_text'>
@@ -60,7 +75,7 @@ const RegisterModal = ({isOpen, onCloseModal, openLoginModal}) => {
           onChange={(e) => setUrl(e.target.value)}
           className='form__input'
           placeholder='Avatar URL'
-          value={url || ""}
+          value={url || ''}
         />
       </label>
     </ModalWithForm>

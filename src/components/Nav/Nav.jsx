@@ -46,14 +46,16 @@ const Nav = ({ city, openModal, openLoginModal, openRegisterModal }) => {
           />
           {isLoggedIn ? (
             <>
-              <li className='nav__list-item' onClick={() => openModal(true)}>
-                <button type='button' href='#' className='nav__link'>
+              <li className='nav__list-item'>
+                <button
+                  type='button'
+                  onClick={() => openModal(true)}
+                  className='nav__link'>
                   + Add clothes
                 </button>
               </li>
               <li className='nav__list-item nav__list-item_profile'>
                 <Link
-                  href='#'
                   className='nav__link nav__link_profile'
                   to='/profile'>
                   {userData.name}
@@ -67,11 +69,15 @@ const Nav = ({ city, openModal, openLoginModal, openRegisterModal }) => {
             </>
           ) : (
             <>
-              <li className="nav__list-item">
-                <button className='nav__button' onClick={handleOpenRegister}>Sign up</button>
+              <li className='nav__list-item'>
+                <button className='nav__button' onClick={handleOpenRegister}>
+                  Sign up
+                </button>
               </li>
-              <li className="nav__list-item">
-                <button className='nav__button' onClick={handleOpenLogin}>Log in</button>
+              <li className='nav__list-item'>
+                <button className='nav__button' onClick={handleOpenLogin}>
+                  Log in
+                </button>
               </li>
             </>
           )}

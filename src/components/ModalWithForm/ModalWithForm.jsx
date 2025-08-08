@@ -11,7 +11,7 @@ const ModalWithForm = ({
   onSubmit,
   isOpen,
   type,
-  switchModal
+  switchModal,
 }) => {
   const [isValid, setIsValid] = useState(false);
   const submitButton = useRef();
@@ -21,11 +21,17 @@ const ModalWithForm = ({
     setIsValid(form.checkValidity());
   };
 
-  const handleSubmit = async (event) => {
-    submitButton.current.disabled = true;
-    await onSubmit(event);
-    submitButton.current.disabled = false;
-    onClose(false);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      submitButton.current.disabled = true;
+      await onSubmit();
+      onClose(false);
+    } catch (error) {
+      console.error(error.message)
+    } finally {
+      submitButton.current.disabled = false;
+    }
   };
 
   return (
@@ -58,7 +64,14 @@ const ModalWithForm = ({
               ref={submitButton}>
               {btnLabel}
             </button>
-            {type && <button className='modal__auth-redirect' onClick={switchModal} type='button'>{type === "register" ? "or Log in" : "or Register"}</button>}
+            {type && (
+              <button
+                className='modal__auth-redirect'
+                onClick={switchModal}
+                type='button'>
+                {type === 'register' ? 'or Log in' : 'or Register'}
+              </button>
+            )}
           </div>
         </form>
       </div>

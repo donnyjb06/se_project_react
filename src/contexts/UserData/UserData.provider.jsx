@@ -19,35 +19,32 @@ const UserDataProvider = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    const getInitialUserInfo = () => {
-      const user = localStorage.getItem('user');
-
-      if (!user) return;
-      setUserData(user);
-    };
-
     const getJwt = async () => {
       try {
+        console.log("fetching jwt")
         const jwt = getToken();
+        console.log(jwt)
 
         if (!jwt) return;
 
-        const { name, email, avatar, _id } = await getUserInfo(jwt);
+        const user = await getUserInfo(jwt);
 
         setIsLoggedIn(true);
-        setUserData({ name, email, avatar, _id });
+        setUserData(user);
       } catch (error) {
         console.error(error);
       }
     };
-  });
+
+    getJwt()
+  }, []);
 
   const handleLogin = async (email, password) => {
     try {
       const res = await logIn(email, password);
 
-      setToken(res.jwt);
-      const user = await getUserInfo(res.jwt);
+      setToken(res.token);
+      const user = await getUserInfo(res.token);
       setUserData(user);
       setIsLoggedIn(true);
       const redirectPath = location.state?.from?.pathname || '/';
@@ -60,9 +57,9 @@ const UserDataProvider = ({ children }) => {
   const handleRegister = async (name, email, avatar, password) => {
     try {
       const newUser = await signUp(email, password, name, avatar);
-      const token = await logIn(email, password);
+      const res = await logIn(email, password);
 
-      setToken(token);
+      setToken(res.token);
       setUserData(newUser);
       setIsLoggedIn(true);
       const redirectPath = location.state?.from?.pathname || '/';

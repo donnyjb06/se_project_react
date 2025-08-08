@@ -1,14 +1,26 @@
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import { useState } from 'react';
+import { useUserData } from '../../hooks/useUserData';
 
-const LoginModal = ({isOpen, onCloseModal, openRegisterModal}) => {
+const LoginModal = ({ isOpen, onCloseModal, openRegisterModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const { handleLogin } = useUserData();
+
   const handleModalSwitch = () => {
-    onCloseModal(false)
-    openRegisterModal(true)
-  }
+    onCloseModal(false);
+    setEmail('');
+    setPassword('');
+    openRegisterModal(true);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await handleLogin(email, password);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <ModalWithForm
@@ -17,7 +29,8 @@ const LoginModal = ({isOpen, onCloseModal, openRegisterModal}) => {
       btnLabel='Log in'
       isOpen={isOpen}
       onClose={onCloseModal}
-      formId="login-form"
+      formId='login-form'
+      onSubmit={handleSubmit}
       switchModal={handleModalSwitch}>
       <label className='form__label form__label_for_text'>
         Email
@@ -26,7 +39,7 @@ const LoginModal = ({isOpen, onCloseModal, openRegisterModal}) => {
           onChange={(e) => setEmail(e.target.value)}
           className='form__input'
           placeholder='Email'
-          value={email || ""}
+          value={email || ''}
           required
         />
       </label>
@@ -37,7 +50,7 @@ const LoginModal = ({isOpen, onCloseModal, openRegisterModal}) => {
           onChange={(e) => setPassword(e.target.value)}
           className='form__input'
           placeholder='Password'
-          value={password || ""}
+          value={password || ''}
           required
         />
       </label>

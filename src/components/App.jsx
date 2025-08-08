@@ -15,6 +15,7 @@ import RegisterModal from './RegisterModal/RegisterModal';
 import LoginModal from './LoginModal/LoginModal';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import UserDataProvider from '../contexts/UserData/UserData.provider';
+import { useUserData } from '../hooks/useUserData';
 
 function App() {
   const [addModalIsOpen, setAddModalIsOpen] = useModalClose();

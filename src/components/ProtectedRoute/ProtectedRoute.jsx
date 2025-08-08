@@ -1,6 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { useUserData } from "../../hooks/useUserData";
 
-const ProtectedRoute = ({isLoggedIn, children, anonymous=false}) => {
+const ProtectedRoute = ({children, anonymous=false}) => {
+  const {isLoggedIn} = useUserData()
   const location = useLocation()
   const from = location.state?.from || '/'
 
