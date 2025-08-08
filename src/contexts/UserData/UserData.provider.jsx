@@ -8,7 +8,12 @@ import { logIn } from '../../utils/auth';
 import { signUp } from '../../utils/auth';
 
 const UserDataProvider = ({ children }) => {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    avatar: '',
+    _id: '',
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,10 +32,10 @@ const UserDataProvider = ({ children }) => {
 
         if (!jwt) return;
 
-        const { username, email, avatar, _id } = await getUserInfo(jwt);
+        const { name, email, avatar, _id } = await getUserInfo(jwt);
 
         setIsLoggedIn(true);
-        setUserData({ username, email, avatar, _id });
+        setUserData({ name, email, avatar, _id });
       } catch (error) {
         console.error(error);
       }
@@ -70,7 +75,7 @@ const UserDataProvider = ({ children }) => {
   const handleLogout = () => {
     removeToken();
     setIsLoggedIn(false);
-    setUserData({ email: '', username: '', avatar: '', _id: '' });
+    setUserData({ email: '', name: '', avatar: '', _id: '' });
   };
 
   return (
@@ -87,4 +92,4 @@ const UserDataProvider = ({ children }) => {
   );
 };
 
-export default UserDataProvider
+export default UserDataProvider;
