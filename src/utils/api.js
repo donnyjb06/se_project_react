@@ -1,7 +1,8 @@
 import { BASE_URL } from './constants';
+import { getToken } from './token';
 
 export const handleResponse = (res, errorMessage) => {
-  if (!res.ok) throw new Error(`Error: ${errorMessage}`);
+  if (!res.ok) throw new Error(res.message);
 
   return res.json();
 };
@@ -16,10 +17,16 @@ const getInitialItems = async () => {
 };
 
 const addNewItem = async (item) => {
+  const token = getToken()
+
+  if (!token) {
+    throw new Error("User must be logged in to create a new item")
+  }
   const res = await fetch(`${BASE_URL}/items`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', 
+      'authorization': `Bearer ${token}`
     },
     body: JSON.stringify(item),
   });
@@ -31,8 +38,19 @@ const addNewItem = async (item) => {
 };
 
 const deleteItem = async (id) => {
+  const token = getToken()
+  console.log(token)
+
+  if (!token) {
+    throw new Error("User must be logged in to create a new item")
+  }
+
   const res = await fetch(`${BASE_URL}/items/${id}`, {
     method: 'DELETE',
+    headers: {
+      'authorization': `Bearer ${token}`
+    }
+    
   });
 
   return handleResponse(

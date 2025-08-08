@@ -1,17 +1,19 @@
 import profilePicture from '../../assets/images/temp-profile-picture.png';
 import './Sidebar.css';
+import { useUserData } from '../../hooks/useUserData';
 
 const Sidebar = () => {
+  const { userData } = useUserData();
   return (
     <div className='sidebar'>
       <img
-        src={profilePicture}
+        src={userData.avatar}
         alt='Profile picture of Terrence Tegengne'
         className='sidebar__profile-picture'
       />
 
       <div className='sidebar__controls'>
-        <h1 className='sidebar__name'>Terrence Tegegne</h1>
+        <h1 className='sidebar__name'>{userData.name}</h1>
         <button className='sidebar__button sidebar__button_edit-profile'>
           Change profile data
         </button>

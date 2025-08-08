@@ -14,10 +14,12 @@
 .sidebar__profile-picture {
   max-width: 56px;
   aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid #00000080;
 }
 
 .sidebar__button {
-  display: none;
+  display: none; 
 }
 
 @media screen and (max-width: 768px) {

@@ -10,9 +10,7 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
 
   const { handleAddItemSubmit } = useClothingData();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     const newItem = {
       name,
       imageUrl: link,
