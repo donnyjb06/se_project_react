@@ -17,16 +17,16 @@ const getInitialItems = async () => {
 };
 
 const addNewItem = async (item) => {
-  const token = getToken()
+  const token = getToken();
 
   if (!token) {
-    throw new Error("User must be logged in to create a new item")
+    throw new Error('User must be logged in to create a new item');
   }
   const res = await fetch(`${BASE_URL}/items`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json', 
-      'authorization': `Bearer ${token}`
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   });
@@ -38,19 +38,18 @@ const addNewItem = async (item) => {
 };
 
 const deleteItem = async (id) => {
-  const token = getToken()
-  console.log(token)
+  const token = getToken();
+  console.log(token);
 
   if (!token) {
-    throw new Error("User must be logged in to create a new item")
+    throw new Error('User must be logged in to create a new item');
   }
 
   const res = await fetch(`${BASE_URL}/items/${id}`, {
     method: 'DELETE',
     headers: {
-      'authorization': `Bearer ${token}`
-    }
-    
+      authorization: `Bearer ${token}`,
+    },
   });
 
   return handleResponse(
@@ -72,7 +71,10 @@ const getUserInfo = async (token) => {
       throw new Error(res.message);
     }
 
-    return handleResponse(res, "An error has occured when attempting to fetch user info.")
+    return handleResponse(
+      res,
+      'An error has occured when attempting to fetch user info.',
+    );
   } catch (error) {
     throw error;
   }
