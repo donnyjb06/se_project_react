@@ -21,9 +21,7 @@ const UserDataProvider = ({ children }) => {
   useEffect(() => {
     const getJwt = async () => {
       try {
-        console.log("fetching jwt")
         const jwt = getToken();
-        console.log(jwt)
 
         if (!jwt) return;
 
