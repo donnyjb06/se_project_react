@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children, anonymous = false }) => {
   const location = useLocation();
   const from = location.state?.from || '/';
 
-  if (anonymous && isLoggedIn) {
+  if (anonymous && isLoggedIn && from !== "/") {
     return <Navigate to={from} />;
   }
 
