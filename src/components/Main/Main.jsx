@@ -7,7 +7,6 @@ import { useMemo } from 'react';
 import { memo } from 'react';
 import { useWeatherData } from '../../hooks/useWeatherData';
 import { useClothingData } from '../../hooks/useClothingData';
-import { Outlet } from 'react-router-dom';
 
 const Main = () => {
   const { temperatures } = useWeatherData();
