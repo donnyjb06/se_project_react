@@ -5,20 +5,35 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
   width: 100%;
+  max-width: 325px;
   aspect-ratio: 1 / 1;
 }
 
-.item-card__name {
+.item-card__header {
   position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-card__name {
   background-color: white;
   padding: 2px 12px;
   border-radius: 8px;
   line-height: 1.25;
   color: rgba(0, 0, 0, 0.6);
-  left: 50%;
-  translate: -50% 0;
-  top: 15px;
   text-align: center;
+}
+
+.item-card__like-toggle {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
 }
 
 .item-card__image {

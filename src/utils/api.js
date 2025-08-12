@@ -110,4 +110,25 @@ const editUserInfo = async (updates) => {
   }
 };
 
-export { getInitialItems, addNewItem, deleteItem, getUserInfo, editUserInfo };
+const toggleIsLiked = async (id, isLiked) => {
+  try {
+    const token = getToken();
+
+    if (!token) {
+      throw new Error('User must be logged in to like/dislike a clothing item.')
+    }
+
+    const res = await fetch(`${BASE_URL}/items/${id}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: {
+        'authorization': `Bearer ${token}`
+      }
+    })
+
+    return handleResponse(res, "An error has occured when attempting to toggle like state.")
+  } catch (error) {
+    throw error
+  }
+}
+
+export { getInitialItems, addNewItem, deleteItem, getUserInfo, editUserInfo, toggleIsLiked };

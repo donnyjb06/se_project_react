@@ -33,10 +33,7 @@ const Main = () => {
         {filteredItems.map((item) => (
           <ItemCard
             key={item._id}
-            name={item.name}
-            link={item.imageUrl}
-            condition={item.weather}
-            handleCardClick={() => handleCardClick(item)}
+            item={item}
           />
         ))}
       </ul>

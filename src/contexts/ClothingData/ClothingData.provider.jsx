@@ -1,6 +1,6 @@
 import { ClothingDataContext } from './ClothingData.context';
 import { useEffect, useState, useCallback } from 'react';
-import { getInitialItems, addNewItem, deleteItem } from '../../utils/api';
+import { getInitialItems, addNewItem, deleteItem, toggleIsLiked } from '../../utils/api';
 import { useModal } from '../../hooks/useModal';
 
 const ClothingDataProvider = ({ children }) => {
@@ -38,13 +38,14 @@ const ClothingDataProvider = ({ children }) => {
 
   const handleCardClick = useCallback(
     (item) => {
-      console.log(item)
+      console.log(item);
       setSelectedItem({
         name: item.name,
         _id: item._id,
         imageUrl: item.imageUrl,
         weather: item.weather,
         owner: item.owner?._id || null,
+        likes: item.likes,
       });
       setModal('item-modal');
     },
@@ -62,6 +63,24 @@ const ClothingDataProvider = ({ children }) => {
     }
   };
 
+  const handleToggleLike = async (id, isLiked) => {
+    try {
+      const updatedItem = await toggleIsLiked(id, isLiked)
+
+      setClothingItems(prevItems => {
+        return prevItems.map(item => {
+          if (item._id === id) {
+            return {...item, likes: updatedItem.likes}
+          }
+
+          return item
+        })
+      })
+    } catch (error) {
+      throw error
+    }
+  };
+
   return (
     <ClothingDataContext.Provider
       value={{
@@ -70,6 +89,7 @@ const ClothingDataProvider = ({ children }) => {
         handleAddItemSubmit,
         handleCardClick,
         handleDeleteItem,
+        handleToggleLike
       }}>
       {children}
     </ClothingDataContext.Provider>
