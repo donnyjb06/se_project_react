@@ -3,20 +3,22 @@ import { useEffect, useState, useCallback } from 'react';
 import { getInitialItems, addNewItem, deleteItem } from '../../utils/api';
 import { useModal } from '../../hooks/useModal';
 
-const ClothingDataProvider = ({ children, onItemModalOpen }) => {
+const ClothingDataProvider = ({ children }) => {
   const [selectedItem, setSelectedItem] = useState({
     name: 'Placeholder Name',
     imageUrl: '',
     weather: 'hot',
     _id: 0,
+    owner: '',
   });
   const [clothingItems, setClothingItems] = useState([]);
-  const {setModal} = useModal();
+  const { setModal } = useModal();
 
   useEffect(() => {
     const getClothingItems = async () => {
       try {
         const items = (await getInitialItems()).items.toReversed();
+        console.log(items)
         setClothingItems(items);
       } catch (error) {
         console.error(error);
@@ -37,15 +39,17 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
 
   const handleCardClick = useCallback(
     (item) => {
+      console.log(item)
       setSelectedItem({
         name: item.name,
         _id: item._id,
         imageUrl: item.imageUrl,
         weather: item.weather,
+        owner: item.owner?._id,
       });
-      setModal("item-modal");
+      setModal('item-modal');
     },
-    [setSelectedItem, onItemModalOpen],
+    [setSelectedItem, setModal],
   );
 
   const handleDeleteItem = async () => {

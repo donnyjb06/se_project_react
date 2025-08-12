@@ -14,7 +14,7 @@ const DeleteConfirmationModal = () => {
     deleteButtonRef.current.disabled = true;
     await handleDeleteItem();
     deleteButtonRef.current.disabled = false;
-    closeModal;
+    closeModal();
   };
 
   return (
