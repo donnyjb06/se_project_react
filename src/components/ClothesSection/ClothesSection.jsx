@@ -2,9 +2,13 @@ import './ClothesSection.css';
 import ItemCard from '../ItemCard/ItemCard';
 import { useClothingData } from '../../hooks/useClothingData';
 import { useModal } from '../../hooks/useModal';
+import { useMemo } from 'react';
+import { useUserData } from '../../hooks/useUserData';
 
 const ClothesSection = () => {
   const {clothingItems: items, handleCardClick} = useClothingData()
+  const {userData} = useUserData()
+  const userClothingItems = useMemo(() => (items.filter(item => item.owner?._id === userData._id)), [items])
   const {setModal} = useModal()
 
   return (
@@ -15,7 +19,7 @@ const ClothesSection = () => {
       </div>
 
       <ul className='clothes__gallery'>
-        {items.map((item) => (
+        {userClothingItems.map((item) => (
           <ItemCard
             key={item._id}
             link={item.imageUrl}
