@@ -27,7 +27,7 @@ const ModalWithForm = ({
       e.preventDefault();
       submitButton.current.disabled = true;
       await onSubmit();
-      closeModal;
+      closeModal();
     } catch (error) {
       console.error(error.message);
     } finally {
