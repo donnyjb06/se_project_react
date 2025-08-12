@@ -1,20 +1,21 @@
 import { useRef, useState } from 'react';
 import exitIcon from '../../assets/images/exit-icon-light.svg';
 import './ModalWithForm.css';
+import { useModal } from '../../hooks/useModal';
 
 const ModalWithForm = ({
   title,
   btnLabel,
   formId,
   children,
-  onClose,
   onSubmit,
   isOpen,
-  type,
   switchModal,
 }) => {
   const [isValid, setIsValid] = useState(false);
   const submitButton = useRef();
+  const { closeModal, modal } = useModal();
+  const isAuthFormModal = modal === 'register-modal' || modal === 'login-modal';
 
   const handleInputChange = (e) => {
     const form = document.forms[formId];
@@ -26,9 +27,9 @@ const ModalWithForm = ({
       e.preventDefault();
       submitButton.current.disabled = true;
       await onSubmit();
-      onClose(false);
+      closeModal;
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     } finally {
       submitButton.current.disabled = false;
     }
@@ -42,7 +43,7 @@ const ModalWithForm = ({
       role='dialog'
       aria-modal='true'>
       <div className='modal__container'>
-        <button className='modal__exit' onClick={() => onClose(false)}>
+        <button className='modal__exit' onClick={closeModal}>
           <img
             src={exitIcon}
             alt='x icon for exit button'
@@ -64,12 +65,12 @@ const ModalWithForm = ({
               ref={submitButton}>
               {btnLabel}
             </button>
-            {type && (
+            {isAuthFormModal && (
               <button
                 className='modal__auth-redirect'
                 onClick={switchModal}
                 type='button'>
-                {type === 'register' ? 'or Log in' : 'or Register'}
+                {modal === 'register-modal' ? 'or Log in' : 'or Register'}
               </button>
             )}
           </div>

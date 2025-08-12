@@ -3,7 +3,6 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import ItemModal from './ItemModal/ItemModal';
-import { useModalClose } from '../hooks/useModalClose';
 import CurrentTemperatureUnitProvider from '../contexts/CurrentTemperatureUnit/CurrentTemperatureUnit.provider';
 import { Routes, Route } from 'react-router-dom';
 import Profile from './Profile/Profile';
@@ -15,68 +14,46 @@ import RegisterModal from './RegisterModal/RegisterModal';
 import LoginModal from './LoginModal/LoginModal';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import UserDataProvider from '../contexts/UserData/UserData.provider';
+import ModalProvider from '../contexts/Modal/Modal.provider';
 
 function App() {
-  const [addModalIsOpen, setAddModalIsOpen] = useModalClose();
-  const [itemModalIsOpen, setItemModalIsOpen] = useModalClose();
-  const [deleteModalIsOpen, setDeleteModalIsOpen] = useModalClose();
-  const [registerModalIsOpen, setRegisterModalIsOpen] = useModalClose();
-  const [loginModalIsOpen, setLoginModalIsOpen] = useModalClose();
-
   return (
     <UserDataProvider>
-      <ClothingDataProvider onItemModalOpen={setItemModalIsOpen}>
-        <CurrentTemperatureUnitProvider>
-          <WeatherDataProvider>
-            <Header
-              openModal={setAddModalIsOpen}
-              openLoginModal={setLoginModalIsOpen}
-              openRegisterModal={setRegisterModalIsOpen}
-            />
-            <Routes>
-              <Route
-                path='/'
-                element={
-                  <ProtectedRoute anonymous>
-                    <Main />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/profile'
-                element={
-                  <ProtectedRoute>
-                    <Profile handleOpenFormModal={setAddModalIsOpen} />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-            <Footer />
-          </WeatherDataProvider>
+      <ModalProvider>
+        <ClothingDataProvider>
+          <CurrentTemperatureUnitProvider>
+            <WeatherDataProvider>
+              <Header />
+              <Routes>
+                <Route
+                  path='/'
+                  element={
+                    <ProtectedRoute anonymous>
+                      <Main />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path='/profile'
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+              <Footer />
+            </WeatherDataProvider>
 
-          <ItemModal
-            onClose={setItemModalIsOpen}
-            onDelete={setDeleteModalIsOpen}
-            isOpen={itemModalIsOpen}
-          />
-          <DeleteConfirmationModal isOpen={deleteModalIsOpen} onClose={setDeleteModalIsOpen}/>
+            <ItemModal />
+            <DeleteConfirmationModal />
+            <AddItemModal />
 
-          <AddItemModal
-            isOpen={addModalIsOpen}
-            onCloseModal={setAddModalIsOpen}
-          />
-          <RegisterModal
-            onCloseModal={setRegisterModalIsOpen}
-            isOpen={registerModalIsOpen}
-            openLoginModal={setLoginModalIsOpen}
-          />
-          <LoginModal
-            onCloseModal={setLoginModalIsOpen}
-            isOpen={loginModalIsOpen}
-            openRegisterModal={setRegisterModalIsOpen}
-          />
-        </CurrentTemperatureUnitProvider>
-      </ClothingDataProvider>
+            <RegisterModal />
+            <LoginModal />
+          </CurrentTemperatureUnitProvider>
+        </ClothingDataProvider>
+      </ModalProvider>
     </UserDataProvider>
   );
 }

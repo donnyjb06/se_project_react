@@ -1,21 +1,23 @@
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import { useState } from 'react';
 import { useUserData } from '../../hooks/useUserData';
+import { useModal } from '../../hooks/useModal';
 
-const RegisterModal = ({ isOpen, onCloseModal, openLoginModal }) => {
+const RegisterModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const { handleRegister } = useUserData();
+  const {modal, setModal} = useModal();
+  const isOpen = modal === "register-modal";
 
   const handleModalSwitch = () => {
-    onCloseModal(false);
     setEmail('');
     setName('');
     setPassword('');
     setUrl('');
-    openLoginModal(true);
+    setModal("login-modal")
   };
 
   const handleSubmit = async () => {
@@ -32,7 +34,6 @@ const RegisterModal = ({ isOpen, onCloseModal, openLoginModal }) => {
       title='Sign up'
       btnLabel='Register'
       isOpen={isOpen}
-      onClose={onCloseModal}
       formId='register-form'
       onSubmit={handleSubmit}
       switchModal={handleModalSwitch}>

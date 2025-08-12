@@ -1,12 +1,15 @@
 import { useClothingData } from '../../hooks/useClothingData';
+import { useModal } from '../../hooks/useModal';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './AddItemModal.css';
 import { useState } from 'react';
 
-const AddItemModal = ({ isOpen, onCloseModal }) => {
+const AddItemModal = () => {
   const [name, setName] = useState();
   const [link, setLink] = useState();
   const [tempRange, setTempRange] = useState('hot');
+  const {modal} = useModal();
+  const isOpen = modal === "add-item-modal";
 
   const { handleAddItemSubmit } = useClothingData();
 
@@ -29,7 +32,6 @@ const AddItemModal = ({ isOpen, onCloseModal }) => {
         title='New garment'
         btnLabel='Add garment'
         formId='add-garment-form'
-        onClose={onCloseModal}
         isOpen={isOpen}>
         <label className='form__label form__label_for_text'>
           Name

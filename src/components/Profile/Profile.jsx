@@ -6,7 +6,7 @@ const Profile = ({items, handleOpenFormModal}) => {
   return (
     <main className="profile">
       <Sidebar />
-      <ClothesSection items={items} openAddModal={handleOpenFormModal}/>
+      <ClothesSection />
     </main>
   )
 }

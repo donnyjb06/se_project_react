@@ -2,22 +2,26 @@ import { useRef } from 'react';
 import { useClothingData } from '../../hooks/useClothingData';
 import './DeleteConfirmationModal.css';
 import exitIcon from '../../assets/images/exit-icon-light.svg';
+import { useModal } from '../../hooks/useModal';
 
-const DeleteConfirmationModal = ({ onClose, isOpen }) => {
+const DeleteConfirmationModal = () => {
   const { handleDeleteItem } = useClothingData();
+  const { modal, closeModal } = useModal();
+  const isOpen = modal === 'delete-confirmation-modal';
   const deleteButtonRef = useRef();
 
   const onDelete = async () => {
     deleteButtonRef.current.disabled = true;
     await handleDeleteItem();
     deleteButtonRef.current.disabled = false;
-    onClose(false);
+    closeModal;
   };
 
   return (
-    <div className={`modal modal__type_delete ${isOpen ? 'modal_is-opened' : ''}`}>
+    <div
+      className={`modal modal__type_delete ${isOpen ? 'modal_is-opened' : ''}`}>
       <div className='modal__container'>
-        <button className='modal__exit' onClick={() => onClose(false)}>
+        <button className='modal__exit' onClick={closeModal}>
           <img
             src={exitIcon}
             alt='x icon for exit button'
@@ -36,7 +40,7 @@ const DeleteConfirmationModal = ({ onClose, isOpen }) => {
           </button>
           <button
             className='modal__button modal__button_type_cancel'
-            onClick={() => onClose(false)}>
+            onClick={closeModal}>
             Cancel
           </button>
         </div>

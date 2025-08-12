@@ -1,32 +1,24 @@
 import { useState } from 'react';
 import './Nav.css';
 import Logo from '../../assets/images/Logo.svg';
-import profilePicture from '../../assets/images/temp-profile-picture.png';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwith';
-import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 import { Link } from 'react-router-dom';
 import hamburgerIcon from '../../assets/images/hamburger-icon.svg';
 import { useUserData } from '../../hooks/useUserData';
+import { useModal } from '../../hooks/useModal';
 
 const currentDate = new Date().toLocaleString('default', {
   month: 'long',
   day: 'numeric',
 });
 
-const Nav = ({ city, openModal, openLoginModal, openRegisterModal }) => {
+const Nav = ({ city }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, userData } = useUserData();
+  const { setModal } = useModal();
 
   const handleClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
-  const handleOpenLogin = () => {
-    openLoginModal(true);
-  };
-
-  const handleOpenRegister = () => {
-    openRegisterModal(true);
   };
 
   return (
@@ -49,15 +41,13 @@ const Nav = ({ city, openModal, openLoginModal, openRegisterModal }) => {
               <li className='nav__list-item'>
                 <button
                   type='button'
-                  onClick={() => openModal(true)}
+                  onClick={() => setModal('add-item-modal')}
                   className='nav__link'>
                   + Add clothes
                 </button>
               </li>
               <li className='nav__list-item nav__list-item_profile'>
-                <Link
-                  className='nav__link nav__link_profile'
-                  to='/profile'>
+                <Link className='nav__link nav__link_profile' to='/profile'>
                   {userData.name}
                   <img
                     src={userData.avatar}
@@ -70,12 +60,16 @@ const Nav = ({ city, openModal, openLoginModal, openRegisterModal }) => {
           ) : (
             <>
               <li className='nav__list-item'>
-                <button className='nav__button' onClick={handleOpenRegister}>
+                <button
+                  className='nav__button'
+                  onClick={() => setModal('register-modal')}>
                   Sign up
                 </button>
               </li>
               <li className='nav__list-item'>
-                <button className='nav__button' onClick={handleOpenLogin}>
+                <button
+                  className='nav__button'
+                  onClick={() => setModal('login-modal')}>
                   Log in
                 </button>
               </li>

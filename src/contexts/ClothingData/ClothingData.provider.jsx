@@ -1,6 +1,7 @@
 import { ClothingDataContext } from './ClothingData.context';
 import { useEffect, useState, useCallback } from 'react';
 import { getInitialItems, addNewItem, deleteItem } from '../../utils/api';
+import { useModal } from '../../hooks/useModal';
 
 const ClothingDataProvider = ({ children, onItemModalOpen }) => {
   const [selectedItem, setSelectedItem] = useState({
@@ -10,6 +11,7 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
     _id: 0,
   });
   const [clothingItems, setClothingItems] = useState([]);
+  const {setModal} = useModal();
 
   useEffect(() => {
     const getClothingItems = async () => {
@@ -41,7 +43,7 @@ const ClothingDataProvider = ({ children, onItemModalOpen }) => {
         imageUrl: item.imageUrl,
         weather: item.weather,
       });
-      onItemModalOpen(true);
+      setModal("item-modal");
     },
     [setSelectedItem, onItemModalOpen],
   );
