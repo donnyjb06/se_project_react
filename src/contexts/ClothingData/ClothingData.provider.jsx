@@ -42,7 +42,7 @@ const ClothingDataProvider = ({ children }) => {
       setSelectedItem({
         name: item.name,
         _id: item._id,
-        imageUrl: item.imageUrl,
+        link: item.link,
         weather: item.weather,
         owner: item.owner?._id || null,
         likes: item.likes,
