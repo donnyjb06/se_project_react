@@ -18,7 +18,6 @@ const ClothingDataProvider = ({ children }) => {
     const getClothingItems = async () => {
       try {
         const items = (await getInitialItems()).items.toReversed();
-        console.log(items)
         setClothingItems(items);
       } catch (error) {
         console.error(error);
