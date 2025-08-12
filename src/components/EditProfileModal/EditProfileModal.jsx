@@ -1,15 +1,22 @@
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import { useModal } from '../../hooks/useModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUserData } from '../../hooks/useUserData';
 
 const EditProfileModal = () => {
   const { handleEditProfile, userData } = useUserData();
-  const [name, setName] = useState(userData.name);
-  const [url, setUrl] = useState(userData.avatar);
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState('');
   const { modal } = useModal();
   
   const isOpen = modal === "edit-profile-modal";
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    setName(userData?.name ?? '')
+    setUrl(userData?.avatar ?? '')
+  }, [userData, isOpen])
 
   const handleSubmit = async () => {
     try {
