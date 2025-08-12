@@ -5,8 +5,8 @@ import './AddItemModal.css';
 import { useState } from 'react';
 
 const AddItemModal = () => {
-  const [name, setName] = useState();
-  const [link, setLink] = useState();
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
   const [tempRange, setTempRange] = useState('hot');
   const {modal} = useModal();
   const isOpen = modal === "add-item-modal";
