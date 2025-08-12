@@ -80,4 +80,34 @@ const getUserInfo = async (token) => {
   }
 };
 
-export { getInitialItems, addNewItem, deleteItem, getUserInfo };
+const editUserInfo = async (updates) => {
+  try {
+    const token = getToken();
+
+    if (!token) {
+      throw new Error('User must be logged in to update profile');
+    }
+
+    if (!updates) {
+      throw new Error('Missing fields');
+    }
+
+    const res = await fetch(`${BASE_URL}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updates),
+    });
+
+    return handleResponse(
+      res,
+      'An error has occured when attempting to edit user info.',
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { getInitialItems, addNewItem, deleteItem, getUserInfo, editUserInfo };

@@ -15,6 +15,7 @@ import LoginModal from './LoginModal/LoginModal';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import UserDataProvider from '../contexts/UserData/UserData.provider';
 import ModalProvider from '../contexts/Modal/Modal.provider';
+import EditProfileModal from './EditProfileModal/EditProfileModal';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
 
             <RegisterModal />
             <LoginModal />
+            <EditProfileModal />
           </CurrentTemperatureUnitProvider>
         </ClothingDataProvider>
       </ModalProvider>

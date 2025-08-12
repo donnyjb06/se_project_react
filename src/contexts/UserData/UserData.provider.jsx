@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getToken, removeToken, setToken } from '../../utils/token';
-import { getUserInfo } from '../../utils/api';
+import { editUserInfo, getUserInfo } from '../../utils/api';
 import { UserDataContext } from './UserData.context';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ const UserDataProvider = ({ children }) => {
       }
     };
 
-    getJwt()
+    getJwt();
   }, []);
 
   const handleLogin = async (email, password) => {
@@ -73,6 +73,19 @@ const UserDataProvider = ({ children }) => {
     setUserData({ email: '', name: '', avatar: '', _id: '' });
   };
 
+  const handleEditProfile = async (name, avatar) => {
+    try {
+      const updatedUser = await editUserInfo({ name, avatar });
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        name: updatedUser.name,
+        avatar: updatedUser.avatar,
+      }));
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <UserDataContext.Provider
       value={{
@@ -81,6 +94,7 @@ const UserDataProvider = ({ children }) => {
         handleLogin,
         handleLogout,
         handleRegister,
+        handleEditProfile,
       }}>
       {children}
     </UserDataContext.Provider>

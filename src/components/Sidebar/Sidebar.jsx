@@ -19,10 +19,14 @@ const Sidebar = () => {
       </div>
 
       <div className='sidebar__controls'>
-        <button className='sidebar__button sidebar__button_edit-profile' onClick={() => setModal("update-profile-modal")}>
+        <button
+          className='sidebar__button sidebar__button_edit-profile'
+          onClick={() => setModal('edit-profile-modal')}>
           Change profile data
         </button>
-        <button className='sidebar__button sidebar__button_log-out' onClick={handleLogout}>
+        <button
+          className='sidebar__button sidebar__button_log-out'
+          onClick={handleLogout}>
           Log out
         </button>
       </div>
