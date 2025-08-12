@@ -16,7 +16,7 @@ const AddItemModal = () => {
   const handleSubmit = async () => {
     const newItem = {
       name,
-      imageUrl: link,
+      link,
       weather: tempRange
     }
 

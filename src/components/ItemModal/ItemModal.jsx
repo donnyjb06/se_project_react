@@ -6,14 +6,14 @@ import { useUserData } from '../../hooks/useUserData';
 
 const ItemModal = () => {
   const { modal, closeModal, setModal } = useModal();
-  const isOpen = modal === "item-modal";
+  const isOpen = modal === 'item-modal';
 
   const { selectedItem } = useClothingData();
-  const {userData} = useUserData();
-  const isOwner = userData._id === selectedItem.owner
+  const { userData } = useUserData();
+  const isOwner = userData._id === selectedItem.owner;
 
   const handleDelete = () => {
-    setModal("delete-confirmation-modal")
+    setModal('delete-confirmation-modal');
   };
 
   return (
@@ -28,7 +28,7 @@ const ItemModal = () => {
         </button>
         <div className='modal__image-wrapper'>
           <img
-            src={selectedItem.imageUrl}
+            src={selectedItem.link}
             alt={`Picture of ${selectedItem.name}`}
             className='modal__image'
           />
@@ -38,12 +38,14 @@ const ItemModal = () => {
             <p className='modal__name'>{selectedItem.name}</p>
             <p className='modal__condition'>Weather: {selectedItem.weather}</p>
           </div>
-          {isOwner && <button
-            type='button'
-            className='modal__delete'
-            onClick={handleDelete}>
-            Delete item
-          </button>}
+          {isOwner && (
+            <button
+              type='button'
+              className='modal__delete'
+              onClick={handleDelete}>
+              Delete item
+            </button>
+          )}
         </div>
       </div>
     </div>

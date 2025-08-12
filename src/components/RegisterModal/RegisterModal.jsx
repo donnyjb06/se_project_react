@@ -7,7 +7,7 @@ const RegisterModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [url, setUrl] = useState('');
+  const [link, setLink] = useState('');
   const { handleRegister } = useUserData();
   const {modal, setModal} = useModal();
   const isOpen = modal === "register-modal";
@@ -16,13 +16,13 @@ const RegisterModal = () => {
     setEmail('');
     setName('');
     setPassword('');
-    setUrl('');
+    setLink('');
     setModal("login-modal")
   };
 
   const handleSubmit = async () => {
     try {
-      await handleRegister(name, email, url, password);
+      await handleRegister(name, email, link, password);
     } catch (error) {
       throw error;
     }
@@ -72,11 +72,11 @@ const RegisterModal = () => {
       <label className='form__label form__label_for_text'>
         Avatar URL
         <input
-          type='url'
-          onChange={(e) => setUrl(e.target.value)}
+          type='link'
+          onChange={(e) => setLink(e.target.value)}
           className='form__input'
           placeholder='Avatar URL'
-          value={url || ''}
+          value={link || ''}
         />
       </label>
     </ModalWithForm>
