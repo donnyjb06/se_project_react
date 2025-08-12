@@ -45,7 +45,7 @@ const ClothingDataProvider = ({ children }) => {
         _id: item._id,
         imageUrl: item.imageUrl,
         weather: item.weather,
-        owner: item.owner?._id,
+        owner: item.owner?._id || null,
       });
       setModal('item-modal');
     },
