@@ -1,11 +1,8 @@
 import './ToggleSwitch.css';
-import { useCurrentTemperatureUnit } from "../../hooks/useCurrentTemperatureUnit";
-
+import { useCurrentTemperatureUnit } from '../../hooks/useCurrentTemperatureUnit';
 
 const ToggleSwitch = ({ optionLeft, optionRight, className = '' }) => {
-  const {handleToggleSwitchChange} = useCurrentTemperatureUnit()
-  // I looked at the review and I'm confused on why I would be destructuring the CurrentTemperatureUnit from the hook
-  // since I dont even use it here
+  const { handleToggleSwitchChange } = useCurrentTemperatureUnit();
 
   const handleToggle = (e) => {
     handleToggleSwitchChange(e.target.checked);
@@ -24,7 +21,7 @@ const ToggleSwitch = ({ optionLeft, optionRight, className = '' }) => {
       <span className='custom-toggle__option custom-toggle__option_right'>
         {optionRight}
       </span>
-      <span className="custom-toggle__knob"></span>     
+      <span className='custom-toggle__knob'></span>
     </label>
   );
 };
