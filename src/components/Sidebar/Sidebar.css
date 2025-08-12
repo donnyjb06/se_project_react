@@ -1,8 +1,15 @@
 .sidebar {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 24px;
   align-self: flex-start;
+  flex-direction: column;
+}
+
+.sidebar__user-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .sidebar__name {
@@ -18,8 +25,21 @@
   border: 1px solid #00000080;
 }
 
+.sidebar__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: first baseline;
+}
+
 .sidebar__button {
-  display: none; 
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+  text-wrap: nowrap;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
@@ -27,30 +47,25 @@
     border-block: 1px solid rgba(0, 0, 0, 0.3);
     padding-block: 20px;
     align-self: stretch;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sidebar__user-details {
     align-items: start;
   }
 
   .sidebar__name {
     font-size: 24px;
-    margin-bottom: 12px;
   }
 
   .sidebar__controls {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+    margin-left: 70px;
+    margin-top: -30px;
   }
 
   .sidebar__button {
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
     color: rgba(0, 0, 0, 0.6);
     font-weight: 500;
-    display: block;
-  }
-
-  .sidebar__button_edit-profile {
-    margin-bottom: 8px;
   }
 }
