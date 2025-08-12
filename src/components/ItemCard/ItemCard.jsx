@@ -9,7 +9,7 @@ const ItemCard = ({ item }) => {
   } = useClothingData();
   const { userData, isLoggedIn } = useUserData();
 
-  const isLiked = item.likes.some(user => user._id === userData._id)
+  const isLiked = item.likes.includes(userData._id)
 
   const handleToggleLike = async () => {
     try {
