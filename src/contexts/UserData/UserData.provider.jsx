@@ -75,7 +75,12 @@ const UserDataProvider = ({ children }) => {
 
   const handleEditProfile = async (name, avatar) => {
     try {
-      const updatedUser = await editUserInfo({ name, avatar });
+      const updateEntries = Object.entries({ name, avatar });
+      const filteredUpdates = Object.fromEntries(
+        updateEntries.filter(([_, value]) => value.trim() !== ''),
+      );
+
+      const updatedUser = await editUserInfo(filteredUpdates);
       setUserData((prevUserData) => ({
         ...prevUserData,
         name: updatedUser.name,
