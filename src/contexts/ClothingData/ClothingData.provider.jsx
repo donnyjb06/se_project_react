@@ -17,8 +17,8 @@ const ClothingDataProvider = ({ children }) => {
   useEffect(() => {
     const getClothingItems = async () => {
       try {
-        const items = (await getInitialItems()).items.toReversed();
-        setClothingItems(items);
+        const items = await getInitialItems();
+        setClothingItems(items.reverse());
       } catch (error) {
         console.error(error);
       }
