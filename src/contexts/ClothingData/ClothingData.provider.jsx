@@ -38,7 +38,6 @@ const ClothingDataProvider = ({ children }) => {
 
   const handleCardClick = useCallback(
     (item) => {
-      console.log(item);
       setSelectedItem({
         name: item.name,
         _id: item._id,
@@ -66,6 +65,7 @@ const ClothingDataProvider = ({ children }) => {
   const handleToggleLike = async (id, isLiked) => {
     try {
       const updatedItem = await toggleIsLiked(id, isLiked)
+      console.log(updatedItem.likes)
 
       setClothingItems(prevItems => {
         return prevItems.map(item => {
