@@ -52,7 +52,7 @@ const ItemCard = ({ item }) => {
       </div>
       <img
         src={item.link}
-        alt='article of clothing'
+        alt={item.name}
         className='item-card__image'
         
       />
