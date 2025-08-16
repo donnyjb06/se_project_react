@@ -1,7 +1,6 @@
 import { useClothingData } from '../../hooks/useClothingData';
 import { useModal } from '../../hooks/useModal';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
-import './AddItemModal.css';
 import { useState } from 'react';
 
 const AddItemModal = () => {
