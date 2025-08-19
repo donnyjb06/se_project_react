@@ -1,6 +1,8 @@
 const API_KEY = '423225afe75e918fc11f1b4c26ddfac1';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://api.wtwr.blueshadows.cl'
+  : 'http://localhost:3001'
 
 const LOCATION = {
   latitude: '30.3462371',
