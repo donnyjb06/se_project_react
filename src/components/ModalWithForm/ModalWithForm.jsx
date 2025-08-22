@@ -17,7 +17,7 @@ const ModalWithForm = ({
   const { closeModal, modal } = useModal();
   const isAuthFormModal = modal === 'register-modal' || modal === 'login-modal';
 
-  const handleInputChange = (e) => {
+  const handleInputChange = () => {
     const form = document.forms[formId];
     setIsValid(form.checkValidity());
   };

@@ -2,7 +2,7 @@ import './Profile.css';
 import Sidebar from '../Sidebar/Sidebar'
 import ClothesSection from '../ClothesSection/ClothesSection'
 
-const Profile = ({items, handleOpenFormModal}) => {
+const Profile = () => {
   return (
     <main className="profile">
       <Sidebar />

@@ -14,7 +14,7 @@ const Main = () => {
 
   const { currentTemperatureUnit } = useCurrentTemperatureUnit();
 
-  const { handleCardClick, clothingItems: items } = useClothingData();
+  const { clothingItems: items } = useClothingData();
 
   const filteredItems = useMemo(() => {
     return items.filter((item) => item.weather === tempRange);

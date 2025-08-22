@@ -1,4 +1,4 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";[lL]ink
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { useUserData } from "../../hooks/useUserData";
 import { useModal } from "../../hooks/useModal";
@@ -21,11 +21,7 @@ const RegisterModal = () => {
 	};
 
 	const handleSubmit = async () => {
-		try {
-			await handleRegister(name, email, imageUrl, password);
-		} catch (error) {
-			throw error;
-		}
+		await handleRegister(name, email, imageUrl, password);
 	};
 
 	return (

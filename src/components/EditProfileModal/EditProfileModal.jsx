@@ -19,11 +19,7 @@ const EditProfileModal = () => {
   }, [userData, isOpen])
 
   const handleSubmit = async () => {
-    try {
       await handleEditProfile(name, url);
-    } catch (error) {
-      throw error;
-    }
   };
 
   return (

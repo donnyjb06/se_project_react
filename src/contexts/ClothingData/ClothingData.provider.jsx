@@ -68,22 +68,17 @@ const ClothingDataProvider = ({ children }) => {
 	};
 
 	const handleToggleLike = async (id, isLiked) => {
-		try {
-			const updatedItem = await toggleIsLiked(id, isLiked);
-			console.log(updatedItem.likes);
+		const updatedItem = await toggleIsLiked(id, isLiked);
 
-			setClothingItems((prevItems) => {
-				return prevItems.map((item) => {
-					if (item._id === id) {
-						return { ...item, likes: updatedItem.likes };
-					}
+		setClothingItems((prevItems) => {
+			return prevItems.map((item) => {
+				if (item._id === id) {
+					return { ...item, likes: updatedItem.likes };
+				}
 
-					return item;
-				});
+				return item;
 			});
-		} catch (error) {
-			throw error;
-		}
+		});
 	};
 
 	return (

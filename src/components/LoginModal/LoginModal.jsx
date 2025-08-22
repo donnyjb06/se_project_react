@@ -17,11 +17,7 @@ const LoginModal = () => {
   };
 
   const handleSubmit = async () => {
-    try {
       await handleLogin(email, password);
-    } catch (error) {
-      throw error;
-    }
   };
 
   return (

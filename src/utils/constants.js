@@ -1,6 +1,6 @@
 const API_KEY = '423225afe75e918fc11f1b4c26ddfac1';
 
-const BASE_URL = process.env.NODE_ENV === 'production' 
+const BASE_URL = import.meta.env.MODE === 'production' 
   ? 'https://api.wtwr.blueshadows.cl'
   : 'http://localhost:3001'
 

@@ -5,7 +5,7 @@ const CurrentTemperatureUnitProvider = ({children}) => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F")
 
   const handleToggleSwitchChange = (isCelcius) => {
-    setCurrentTemperatureUnit(prevTempUnit => isCelcius ? "C" : "F")
+    setCurrentTemperatureUnit(isCelcius ? "C" : "F")
   }
   
   return (

@@ -6,11 +6,11 @@ import { useMemo } from 'react';
 import { useUserData } from '../../hooks/useUserData';
 
 const ClothesSection = () => {
-  const { clothingItems: items, handleCardClick } = useClothingData();
+  const { clothingItems: items } = useClothingData();
   const { userData } = useUserData();
   const userClothingItems = useMemo(
     () => items.filter((item) => item.owner?._id === userData._id),
-    [items],
+    [items, userData],
   );
   const { setModal } = useModal();
 

@@ -38,7 +38,6 @@ const UserDataProvider = ({ children }) => {
   }, []);
 
   const handleLogin = async (email, password) => {
-    try {
       const res = await logIn(email, password);
 
       setToken(res.token);
@@ -47,13 +46,9 @@ const UserDataProvider = ({ children }) => {
       setIsLoggedIn(true);
       const redirectPath = location.state?.from?.pathname || '/';
       navigate(redirectPath);
-    } catch (error) {
-      throw error;
-    }
   };
 
   const handleRegister = async (name, email, avatar, password) => {
-    try {
       const newUser = await signUp(email, password, name, avatar);
       const res = await logIn(email, password);
 
@@ -62,9 +57,6 @@ const UserDataProvider = ({ children }) => {
       setIsLoggedIn(true);
       const redirectPath = location.state?.from?.pathname || '/';
       navigate(redirectPath);
-    } catch (error) {
-      throw error;
-    }
   };
 
   const handleLogout = () => {
@@ -74,10 +66,9 @@ const UserDataProvider = ({ children }) => {
   };
 
   const handleEditProfile = async (name, avatar) => {
-    try {
       const updateEntries = Object.entries({ name, avatar });
       const filteredUpdates = Object.fromEntries(
-        updateEntries.filter(([_, value]) => value.trim() !== ''),
+        updateEntries.filter(([, value]) => value.trim() !== ''),
       );
 
       const updatedUser = await editUserInfo(filteredUpdates);
@@ -86,9 +77,6 @@ const UserDataProvider = ({ children }) => {
         name: updatedUser.name,
         avatar: updatedUser.avatar,
       }));
-    } catch (error) {
-      throw error;
-    }
   };
 
   return (

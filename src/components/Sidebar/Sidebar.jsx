@@ -1,4 +1,3 @@
-import profilePicture from '../../assets/images/temp-profile-picture.png';
 import './Sidebar.css';
 import { useUserData } from '../../hooks/useUserData';
 import { useModal } from '../../hooks/useModal';
